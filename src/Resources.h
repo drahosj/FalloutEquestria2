@@ -28,6 +28,7 @@
 #include <SDL/SDL_image.h>
 #include <map>
 #include <string>
+#include <vector>
 
 namespace foe {
 
@@ -37,10 +38,14 @@ public:
 	virtual ~Resources();
 
 	SDL_Surface * getTileSprite(unsigned int);
+	std::vector<std::string> * getMap(unsigned int);
 private:
 	std::map<int, SDL_Surface *> tile_sprites;
+	std::map<int, std::vector<std::string>*> maps;
 
 	void loadTiles();
+	void loadMaps();
+	std::vector<std::string>* loadMap(char *);
 	SDL_Surface * loadImage(char*);
 };
 

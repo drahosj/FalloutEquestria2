@@ -22,11 +22,16 @@
  */
 
 #include "Resources.h"
+#include <iostream>
+#include <algorithm>
+#include <iterator>
+#include <fstream>
 
 namespace foe {
 
 Resources::Resources() {
 	loadTiles();
+	loadMaps();
 }
 
 Resources::~Resources() {
@@ -34,10 +39,11 @@ Resources::~Resources() {
 }
 
 void Resources::loadTiles() {
-	tile_sprites[0x0] = loadImage("resources/textures/tiles/0000_concrete_0.png");
-	tile_sprites[0x1] = loadImage("resources/textures/tiles/0001_concrete_1.png");
-	tile_sprites[0x9] = loadImage("resources/textures/tiles/0009_concrete_dark_0.png");
-	tile_sprites[0xa] = loadImage("resources/textures/tiles/000a_concrete__dark_1.png");
+	tile_sprites[0x0] = loadImage("res/textures/tiles/0000_concrete_0.png");
+	tile_sprites[0x1] = loadImage("res/textures/tiles/0001_concrete_1.png");
+	tile_sprites[0x9] = loadImage("res/textures/tiles/0009_concrete_dark_0.png");
+	tile_sprites[0xa] = loadImage("res/textures/tiles/000a_concrete_dark_1.png");
+	tile_sprites[0x10] = loadImage("res/textures/tiles/0010_wall_0.png");
 }
 
 SDL_Surface  * Resources::loadImage(char *name) {
@@ -53,4 +59,29 @@ SDL_Surface * Resources::getTileSprite(unsigned int id) {
 	return tile_sprites[id];
 }
 
+std::vector<std::string> * Resources::loadMap(char *name) {
+	std::ifstream mapfile;
+	std::string s;
+
+	std::cout << "Loading map..." << std::endl;
+
+	mapfile.open(name);
+	std::vector<std::string> *input = new std::vector<std::string>;
+	while(mapfile) {
+		std::getline(mapfile, s);
+		input->push_back(s);
+	}
+	std::cout << "Map loaded" << std::endl;
+	mapfile.close();
+	return input;
+}
+
+std::vector<std::string> * Resources::getMap(unsigned int id) {
+	return maps[id];
+}
+
+void Resources::loadMaps() {
+	maps[0x1] = loadMap("res/maps/01.mpf");
+
+}
 } /* namespace foe */

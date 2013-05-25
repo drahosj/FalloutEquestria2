@@ -10,11 +10,16 @@
 
 #include <iostream>
 #include <SDL/SDL.h>
+#include "Game.h"
 
 using namespace std;
 
 int main(void) {
-	cout << "Hello World" << endl; /* prints Hello World */
-	SDL_Init(SDL_INIT_EVERYTHING);
+	std::cout << "Initializing SDL" << endl;
+	foe::Game *game;
+
+	game = new foe::Game();
+	SDL_Delay(1000);
+	std::cout << "Exiting..." << endl;
 	return 0;
 }

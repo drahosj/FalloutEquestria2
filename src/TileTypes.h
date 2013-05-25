@@ -30,5 +30,6 @@ static unsigned const int CONCRETE_1 = 0x1;
 static unsigned const int CONCRETE_DARK_0 = 0x9;
 static unsigned const int CONCRETE_DARK_1 = 0xa;
 
+static unsigned const int WALL_0 = 0x10;
 
 #endif /* TILETYPES_H_ */

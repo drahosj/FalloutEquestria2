@@ -22,6 +22,7 @@
  */
 
 #include "Game.h"
+#include "Room.h"
 
 namespace foe {
 
@@ -31,6 +32,11 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0)
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
 	resources = new Resources();
+
+	Room *testroom = new Room(this, 1);
+	testroom->drawAllTiles();
+	testroom->drawSurface();
+	SDL_Flip(screen);
 }
 
 Game::~Game() {

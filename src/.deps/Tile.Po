@@ -31,9 +31,7 @@ Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/SDL/SDL_video.h /usr/include/SDL/SDL_joystick.h \
  /usr/include/SDL/SDL_quit.h /usr/include/SDL/SDL_loadso.h \
  /usr/include/SDL/SDL_timer.h /usr/include/SDL/SDL_version.h TileTypes.h \
- Room.h Game.h Resources.h /usr/include/SDL/SDL_image.h \
- /usr/include/SDL/SDL.h /usr/include/c++/4.7/map \
- /usr/include/c++/4.7/bits/stl_tree.h \
+ Room.h /usr/include/c++/4.7/vector \
  /usr/include/c++/4.7/bits/stl_algobase.h \
  /usr/include/c++/4.7/x86_64-suse-linux/bits/c++config.h \
  /usr/include/c++/4.7/x86_64-suse-linux/bits/os_defines.h \
@@ -53,11 +51,13 @@ Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/c++/4.7/ext/new_allocator.h /usr/include/c++/4.7/new \
  /usr/include/c++/4.7/exception \
  /usr/include/c++/4.7/bits/atomic_lockfree_defines.h \
- /usr/include/c++/4.7/bits/stl_function.h \
- /usr/include/c++/4.7/backward/binders.h \
- /usr/include/c++/4.7/bits/stl_map.h \
- /usr/include/c++/4.7/bits/stl_multimap.h \
- /usr/include/c++/4.7/bits/range_access.h /usr/include/c++/4.7/string \
+ /usr/include/c++/4.7/bits/stl_construct.h \
+ /usr/include/c++/4.7/ext/alloc_traits.h \
+ /usr/include/c++/4.7/bits/stl_uninitialized.h \
+ /usr/include/c++/4.7/bits/stl_vector.h \
+ /usr/include/c++/4.7/bits/stl_bvector.h \
+ /usr/include/c++/4.7/bits/range_access.h \
+ /usr/include/c++/4.7/bits/vector.tcc /usr/include/c++/4.7/string \
  /usr/include/c++/4.7/bits/stringfwd.h \
  /usr/include/c++/4.7/bits/char_traits.h \
  /usr/include/c++/4.7/bits/postypes.h /usr/include/c++/4.7/cwchar \
@@ -67,6 +67,8 @@ Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/bits/locale.h /usr/include/c++/4.7/iosfwd \
  /usr/include/c++/4.7/cctype /usr/include/c++/4.7/bits/ostream_insert.h \
  /usr/include/c++/4.7/bits/cxxabi_forced.h \
+ /usr/include/c++/4.7/bits/stl_function.h \
+ /usr/include/c++/4.7/backward/binders.h \
  /usr/include/c++/4.7/bits/basic_string.h \
  /usr/include/c++/4.7/ext/atomicity.h \
  /usr/include/c++/4.7/x86_64-suse-linux/bits/gthr.h \
@@ -74,7 +76,11 @@ Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/timex.h /usr/include/bits/setjmp.h \
  /usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h \
- /usr/include/c++/4.7/bits/basic_string.tcc
+ /usr/include/c++/4.7/bits/basic_string.tcc Game.h Resources.h \
+ /usr/include/SDL/SDL_image.h /usr/include/SDL/SDL.h \
+ /usr/include/c++/4.7/map /usr/include/c++/4.7/bits/stl_tree.h \
+ /usr/include/c++/4.7/bits/stl_map.h \
+ /usr/include/c++/4.7/bits/stl_multimap.h
 
 Tile.h:
 
@@ -214,17 +220,7 @@ TileTypes.h:
 
 Room.h:
 
-Game.h:
-
-Resources.h:
-
-/usr/include/SDL/SDL_image.h:
-
-/usr/include/SDL/SDL.h:
-
-/usr/include/c++/4.7/map:
-
-/usr/include/c++/4.7/bits/stl_tree.h:
+/usr/include/c++/4.7/vector:
 
 /usr/include/c++/4.7/bits/stl_algobase.h:
 
@@ -270,15 +266,19 @@ Resources.h:
 
 /usr/include/c++/4.7/bits/atomic_lockfree_defines.h:
 
-/usr/include/c++/4.7/bits/stl_function.h:
+/usr/include/c++/4.7/bits/stl_construct.h:
 
-/usr/include/c++/4.7/backward/binders.h:
+/usr/include/c++/4.7/ext/alloc_traits.h:
 
-/usr/include/c++/4.7/bits/stl_map.h:
+/usr/include/c++/4.7/bits/stl_uninitialized.h:
 
-/usr/include/c++/4.7/bits/stl_multimap.h:
+/usr/include/c++/4.7/bits/stl_vector.h:
+
+/usr/include/c++/4.7/bits/stl_bvector.h:
 
 /usr/include/c++/4.7/bits/range_access.h:
+
+/usr/include/c++/4.7/bits/vector.tcc:
 
 /usr/include/c++/4.7/string:
 
@@ -308,6 +308,10 @@ Resources.h:
 
 /usr/include/c++/4.7/bits/cxxabi_forced.h:
 
+/usr/include/c++/4.7/bits/stl_function.h:
+
+/usr/include/c++/4.7/backward/binders.h:
+
 /usr/include/c++/4.7/bits/basic_string.h:
 
 /usr/include/c++/4.7/ext/atomicity.h:
@@ -329,3 +333,19 @@ Resources.h:
 /usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h:
 
 /usr/include/c++/4.7/bits/basic_string.tcc:
+
+Game.h:
+
+Resources.h:
+
+/usr/include/SDL/SDL_image.h:
+
+/usr/include/SDL/SDL.h:
+
+/usr/include/c++/4.7/map:
+
+/usr/include/c++/4.7/bits/stl_tree.h:
+
+/usr/include/c++/4.7/bits/stl_map.h:
+
+/usr/include/c++/4.7/bits/stl_multimap.h:

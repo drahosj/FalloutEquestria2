@@ -24,14 +24,17 @@
 #include "Room.h"
 #include "Game.h"
 #include "Tile.h"
-#include "TileTypes.h"
 #include <SDL/SDL.h>
+#include <string>
+#include <iostream>
 
 namespace foe {
 
-Room::Room(Game *game): game(game) {
+Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 	uid = game->getNextUid();
 	SDL_PixelFormat *format = game->screen->format;
+
+	map = game->resources->getMap(tid);
 
 	surface = SDL_CreateRGBSurface(game->screen->flags, 300, 300, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
 	createTiles();
@@ -47,11 +50,41 @@ Room::~Room() {
 
 void Room::createTiles() {
 	tiles = new Tile**[12];
+	std::cout << "Loading tiles" << std::endl;
 
 	for (int i  = 0; i < 12; i++) {
 		tiles[i] = new Tile*[12];
+	}
+
+	for (int j = 0; j < 12; j++) {
+		for (int i = 0; i < 12; i++) {
+			if ((*map)[j+2].c_str()[i] == 'F')
+				tiles[i][j] = new Tile(i, j, Tile::Types::CONCRETE_0, this);
+			else if ((*map)[j+2].c_str()[i] == 'W')
+				tiles[i][j] = new Tile(i, j, Tile::Types::WALL_0, this);
+		}
+	}
+}
+
+void Room::drawSurface() {
+	SDL_Rect srcrect;
+	srcrect.h = 300;
+	srcrect.w = 300;
+	srcrect.x = 0;
+	srcrect.y = 0;
+	SDL_Rect dstrect;
+	dstrect.h = 300;
+	dstrect.w = 300;
+	dstrect.x = 25;
+	dstrect.y = 25;
+
+	SDL_BlitSurface(surface, &srcrect, game->screen, &dstrect);
+}
+
+void Room::drawAllTiles() {
+	for (int i  = 0; i < 12; i++) {
 		for (int j = 0; j < 12; j++) {
-			tiles[i][j] = new Tile(i, j, Tile::Types::CONCRETE_0, this);
+			drawTile(i, j);
 		}
 	}
 }

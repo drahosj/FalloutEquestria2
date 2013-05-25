@@ -25,6 +25,8 @@
 #define ROOM_H_
 
 #include <SDL/SDL.h>
+#include <vector>
+#include <string>
 
 namespace foe {
 
@@ -34,16 +36,19 @@ class Game;
 
 class Room {
 public:
-	Room(Game *);
+	Room(Game *, unsigned int);
 	virtual ~Room();
 	void drawTile(int, int);
 	void drawAllTiles();
+	void drawSurface();
 
 	SDL_Surface *surface;
 
 	Tile ***tiles;
 	unsigned long int uid;
+	unsigned int tid;
 	Game *game;
+	std::vector<std::string> *map;
 private:
 	void createTiles();
 };

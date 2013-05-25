@@ -35,6 +35,8 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 	SDL_PixelFormat *format = game->screen->format;
 
 	map = game->resources->getMap(tid);
+	width = atoi((*map)[0].c_str());
+	height = atoi((*map)[0].c_str());
 
 	surface = SDL_CreateRGBSurface(game->screen->flags, 300, 300, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
 	createTiles();
@@ -49,15 +51,14 @@ Room::~Room() {
 }
 
 void Room::createTiles() {
-	tiles = new Tile**[12];
-	std::cout << "Loading tiles" << std::endl;
+	tiles = new Tile**[width];
 
-	for (int i  = 0; i < 12; i++) {
-		tiles[i] = new Tile*[12];
+	for (int i  = 0; i < width; i++) {
+		tiles[i] = new Tile*[height];
 	}
 
-	for (int j = 0; j < 12; j++) {
-		for (int i = 0; i < 12; i++) {
+	for (int j = 0; j < height; j++) {
+		for (int i = 0; i < width; i++) {
 			if ((*map)[j+2].c_str()[i] == 'F')
 				tiles[i][j] = new Tile(i, j, Tile::Types::CONCRETE_0, this);
 			else if ((*map)[j+2].c_str()[i] == 'W')

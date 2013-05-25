@@ -63,15 +63,12 @@ std::vector<std::string> * Resources::loadMap(char *name) {
 	std::ifstream mapfile;
 	std::string s;
 
-	std::cout << "Loading map..." << std::endl;
-
 	mapfile.open(name);
 	std::vector<std::string> *input = new std::vector<std::string>;
 	while(mapfile) {
 		std::getline(mapfile, s);
 		input->push_back(s);
 	}
-	std::cout << "Map loaded" << std::endl;
 	mapfile.close();
 	return input;
 }

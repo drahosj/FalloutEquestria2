@@ -47,6 +47,7 @@ public:
 	Tile ***tiles;
 	unsigned long int uid;
 	unsigned int tid;
+	int width, height;
 	Game *game;
 	std::vector<std::string> *map;
 private:

@@ -47,11 +47,6 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 	createTiles();
 
 	entities = new std::list<Entity *>;
-	Entity *testEntity = new Entity(2, 2, 0, this);
-	game->playerUid = testEntity->uid;
-
-	entities->push_back(testEntity);
-	testEntity = getEntity(game->playerUid);
 
 }
 

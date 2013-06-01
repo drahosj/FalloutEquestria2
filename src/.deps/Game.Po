@@ -80,7 +80,8 @@ Game.o: Game.cc Game.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/c++/4.7/bits/stl_vector.h \
  /usr/include/c++/4.7/bits/stl_bvector.h \
  /usr/include/c++/4.7/bits/vector.tcc Room.h /usr/include/c++/4.7/list \
- /usr/include/c++/4.7/bits/stl_list.h /usr/include/c++/4.7/bits/list.tcc
+ /usr/include/c++/4.7/bits/stl_list.h /usr/include/c++/4.7/bits/list.tcc \
+ Entity.h EntityTypes.h
 
 Game.h:
 
@@ -351,3 +352,7 @@ Room.h:
 /usr/include/c++/4.7/bits/stl_list.h:
 
 /usr/include/c++/4.7/bits/list.tcc:
+
+Entity.h:
+
+EntityTypes.h:

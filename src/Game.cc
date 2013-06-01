@@ -23,6 +23,7 @@
 
 #include "Game.h"
 #include "Room.h"
+#include "Entity.h"
 
 namespace foe {
 
@@ -32,13 +33,20 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0)
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
 	resources = new Resources();
+	playerUid = 0;
 
 	Room *testroom = new Room(this, 1);
+
+
+	Entity *testEntity = new Entity(2, 2, 0, testroom);
+	playerUid = testEntity->uid;
+
+	testroom->entities->push_back(testEntity);
+
 	testroom->drawAllTiles();
-	//testroom->drawAllEntities();
-	testroom->drawEntity(testroom->getEntity(playerUid));
+	testroom->drawAllEntities();
+	//testroom->drawEntity(testroom->getEntity(playerUid));
 	testroom->drawSurface();
-	playerUid = 0;
 	SDL_Flip(screen);
 }
 

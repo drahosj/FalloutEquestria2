@@ -33,7 +33,10 @@ class Game {
 public:
 	Game();
 	virtual ~Game();
-	unsigned long int getNextUid();
+	unsigned long getNextUid();
+
+
+	unsigned long playerUid;
 
 	Resources * resources;
 
@@ -43,7 +46,7 @@ public:
 
 	SDL_Surface *screen;
 private:
-	unsigned long int nextUid;
+	unsigned long nextUid;
 };
 
 } /* namespace foe */

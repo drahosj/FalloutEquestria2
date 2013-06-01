@@ -65,7 +65,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_fallout_equestria_OBJECTS = main.$(OBJEXT) Game.$(OBJEXT) \
-	Resources.$(OBJEXT) Room.$(OBJEXT) Tile.$(OBJEXT)
+	Resources.$(OBJEXT) Room.$(OBJEXT) Tile.$(OBJEXT) \
+	Entity.$(OBJEXT)
 fallout_equestria_OBJECTS = $(am_fallout_equestria_OBJECTS)
 am__DEPENDENCIES_1 =
 fallout_equestria_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -188,7 +189,7 @@ target_vendor = suse
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-fallout_equestria_SOURCES = main.cc Game.cc Resources.cc Room.cc Tile.cc
+fallout_equestria_SOURCES = main.cc Game.cc Resources.cc Room.cc Tile.cc Entity.cc
 AM_CPPFLAGS = $(DEPS_CFLAGS)
 fallout_equestria_LDADD = $(DEPS_LIBS)
 all: all-am
@@ -275,6 +276,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/Entity.Po
 include ./$(DEPDIR)/Game.Po
 include ./$(DEPDIR)/Resources.Po
 include ./$(DEPDIR)/Room.Po

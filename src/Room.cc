@@ -26,7 +26,9 @@
 #include "Tile.h"
 #include <SDL/SDL.h>
 #include <string>
+#include "Entity.h"
 #include <iostream>
+#include <algorithm>
 
 namespace foe {
 
@@ -38,14 +40,28 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 	width = atoi((*map)[0].c_str());
 	height = atoi((*map)[0].c_str());
 
-	surface = SDL_CreateRGBSurface(game->screen->flags, 300, 300, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
+	pixelWidth = Tile::TILE_SIZE * width;
+	pixelHeight = Tile::TILE_SIZE * height;
+
+	surface = SDL_CreateRGBSurface(game->screen->flags, pixelWidth, pixelHeight, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
 	createTiles();
+
+	entities = new std::list<Entity *>;
+	Entity *testEntity = new Entity(2, 2, 0, this);
+	game->playerUid = testEntity->uid;
+
+	entities->push_back(testEntity);
+	testEntity = getEntity(game->playerUid);
+
 }
 
 Room::~Room() {
 	for (int i  = 0; i < 12; i++) {
 		for (int j = 0; j < 12; j++) {
-			//delete tiles[i][j];
+			delete tiles[i][j];
+			//TODO: Delete All Entities then delete entities!
+			SDL_FreeSurface(surface);
+			delete map;
 		}
 	}
 }
@@ -69,13 +85,13 @@ void Room::createTiles() {
 
 void Room::drawSurface() {
 	SDL_Rect srcrect;
-	srcrect.h = 300;
-	srcrect.w = 300;
+	srcrect.h = pixelWidth;
+	srcrect.w = pixelHeight;
 	srcrect.x = 0;
 	srcrect.y = 0;
 	SDL_Rect dstrect;
-	dstrect.h = 300;
-	dstrect.w = 300;
+	dstrect.h = pixelWidth;
+	dstrect.w = pixelHeight;
 	dstrect.x = 25;
 	dstrect.y = 25;
 
@@ -92,16 +108,52 @@ void Room::drawAllTiles() {
 
 void Room::drawTile(int x, int y) {
 	SDL_Rect srcrect;
-	srcrect.h = 25;
-	srcrect.w = 25;
+	srcrect.h = Tile::TILE_SIZE;
+	srcrect.w = Tile::TILE_SIZE;
 	srcrect.x = 0;
 	srcrect.y = 0;
 	SDL_Rect dstrect;
-	dstrect.h = 25;
-	dstrect.w = 25;
-	dstrect.x = 25 * x;
-	dstrect.y = 25 * y;
+	dstrect.h = Tile::TILE_SIZE;
+	dstrect.w = Tile::TILE_SIZE;
+	dstrect.x = Tile::TILE_SIZE * x;
+	dstrect.y = Tile::TILE_SIZE * y;
 	SDL_BlitSurface(tiles[x][y]->sprite, &srcrect, surface, &dstrect);
 }
 
+Entity * Room::getEntity(unsigned long uid) {
+	std::list<Entity *>::iterator target;
+
+	target = findEntity(entities->begin(), uid);
+
+	return *target;
+}
+
+std::list<Entity *>::iterator Room::findEntity(std::list<Entity *>::iterator current, unsigned long targetUid) {
+	if ((*current)->uid == targetUid)
+		return current;
+	else
+		return findEntity(++current, targetUid);
+}
+
+void Room::drawEntity(Entity *entity) {
+	SDL_Rect srcrect;
+	srcrect.h = Tile::TILE_SIZE; //TODO: Entity sizes...
+	srcrect.w = Tile::TILE_SIZE;
+	srcrect.x = 0;
+	srcrect.y = 0;
+	SDL_Rect dstrect;
+	dstrect.h = Tile::TILE_SIZE;
+	dstrect.w = Tile::TILE_SIZE;
+	dstrect.x = Tile::TILE_SIZE * entity->x;
+	dstrect.y = Tile::TILE_SIZE * entity->y;
+	SDL_BlitSurface(entity->sprite, &srcrect, surface, &dstrect);
+}
+
+void Room::drawAllEntities() {
+	std::list<Entity *>::iterator current = entities->begin();
+	do {
+		drawEntity(*current);
+		current++;
+	} while (current != entities->end());
+}
 } /* namespace foe */

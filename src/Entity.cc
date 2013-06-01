@@ -1,7 +1,7 @@
 /*
- * Tile.h
+ * Entity.cc
  *
- *  Created on: May 25, 2013
+ *  Created on: Jun 1, 2013
  *      Author: jake
  *
  *  Copyright (C) 2013  Jake Drahos
@@ -21,31 +21,20 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef TILE_H_
-#define TILE_H_
-
-#include <SDL/SDL.h>
+#include "Entity.h"
+#include "Room.h"
+#include "Game.h"
 
 namespace foe {
-class Room;
 
-class Tile {
-public:
-	Tile(int, int, unsigned int, Room *);
-	virtual ~Tile();
+Entity::Entity(int x, int y, unsigned int tid, Room *room): room(room), x(x), y(y), tid(tid) {
+	uid = room->game->getNextUid();
 
-	const static int TILE_SIZE = 25;
+	sprite = room->game->resources->getEntitySprite(tid);
+}
 
-	Room *room;
-	int x, y;
-	unsigned int tid;
-	unsigned long int uid;
-	SDL_Surface *sprite;
-	class Types {
-	public:
-		#include "TileTypes.h"
-		};
-};
+Entity::~Entity() {
+	// TODO Auto-generated destructor stub
+}
 
 } /* namespace foe */
-#endif /* TILE_H_ */

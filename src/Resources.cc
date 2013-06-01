@@ -32,6 +32,7 @@ namespace foe {
 Resources::Resources() {
 	loadTiles();
 	loadMaps();
+	loadEntities();
 }
 
 Resources::~Resources() {
@@ -46,17 +47,25 @@ void Resources::loadTiles() {
 	tile_sprites[0x10] = loadImage("res/textures/tiles/0010_wall_0.png");
 }
 
+void Resources::loadEntities() {
+	entity_sprites[0x0] = loadImage("res/textures/entities/characters/0000_player.png");
+}
+
 SDL_Surface  * Resources::loadImage(char *name) {
 	SDL_Surface *tempImage = 0;
 	SDL_Surface *optimizedImage = 0;
 	tempImage = IMG_Load(name);
-	optimizedImage = SDL_DisplayFormat(tempImage);
+	optimizedImage = SDL_DisplayFormatAlpha(tempImage);
 	SDL_FreeSurface(tempImage);
 	return optimizedImage;
 }
 
 SDL_Surface * Resources::getTileSprite(unsigned int id) {
 	return tile_sprites[id];
+}
+
+SDL_Surface * Resources::getEntitySprite(unsigned int id) {
+	return entity_sprites[id];
 }
 
 std::vector<std::string> * Resources::loadMap(char *name) {

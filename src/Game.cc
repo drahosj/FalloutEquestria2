@@ -35,7 +35,10 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0)
 
 	Room *testroom = new Room(this, 1);
 	testroom->drawAllTiles();
+	//testroom->drawAllEntities();
+	testroom->drawEntity(testroom->getEntity(playerUid));
 	testroom->drawSurface();
+	playerUid = 0;
 	SDL_Flip(screen);
 }
 
@@ -43,7 +46,7 @@ Game::~Game() {
 	// TODO Auto-generated destructor stub
 }
 
-unsigned long int Game::getNextUid() {
+unsigned long Game::getNextUid() {
 	return ++nextUid;
 }
 

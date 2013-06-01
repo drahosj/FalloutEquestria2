@@ -1,7 +1,7 @@
 /*
- * Tile.h
+ * EntityTypes.h
  *
- *  Created on: May 25, 2013
+ *  Created on: Jun 1, 2013
  *      Author: jake
  *
  *  Copyright (C) 2013  Jake Drahos
@@ -21,31 +21,10 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef TILE_H_
-#define TILE_H_
+#ifndef ENTITYTYPES_H_
+#define ENTITYTYPES_H_
 
-#include <SDL/SDL.h>
+static unsigned const PLAYER = 0x0;
 
-namespace foe {
-class Room;
 
-class Tile {
-public:
-	Tile(int, int, unsigned int, Room *);
-	virtual ~Tile();
-
-	const static int TILE_SIZE = 25;
-
-	Room *room;
-	int x, y;
-	unsigned int tid;
-	unsigned long int uid;
-	SDL_Surface *sprite;
-	class Types {
-	public:
-		#include "TileTypes.h"
-		};
-};
-
-} /* namespace foe */
-#endif /* TILE_H_ */
+#endif /* ENTITYTYPES_H_ */

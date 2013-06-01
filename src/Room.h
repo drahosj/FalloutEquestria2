@@ -27,11 +27,13 @@
 #include <SDL/SDL.h>
 #include <vector>
 #include <string>
+#include <list>
 
 namespace foe {
 
 class Tile;
 class Game;
+class Entity;
 
 
 class Room {
@@ -41,17 +43,22 @@ public:
 	void drawTile(int, int);
 	void drawAllTiles();
 	void drawSurface();
+	void drawEntity(Entity *);
+	void drawAllEntities();
+	Entity * getEntity(unsigned long);
 
 	SDL_Surface *surface;
 
+	std::list<Entity *> *entities;
 	Tile ***tiles;
 	unsigned long int uid;
 	unsigned int tid;
-	int width, height;
+	int width, height, pixelHeight, pixelWidth;
 	Game *game;
 	std::vector<std::string> *map;
 private:
 	void createTiles();
+	std::list<Entity *>::iterator findEntity(std::list<Entity *>::iterator current, unsigned long);
 };
 
 } /* namespace foe */

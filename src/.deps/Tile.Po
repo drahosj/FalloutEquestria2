@@ -76,8 +76,9 @@ Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
  /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/timex.h /usr/include/bits/setjmp.h \
  /usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h \
- /usr/include/c++/4.7/bits/basic_string.tcc Game.h Resources.h \
- /usr/include/SDL/SDL_image.h /usr/include/SDL/SDL.h \
+ /usr/include/c++/4.7/bits/basic_string.tcc /usr/include/c++/4.7/list \
+ /usr/include/c++/4.7/bits/stl_list.h /usr/include/c++/4.7/bits/list.tcc \
+ Game.h Resources.h /usr/include/SDL/SDL_image.h /usr/include/SDL/SDL.h \
  /usr/include/c++/4.7/map /usr/include/c++/4.7/bits/stl_tree.h \
  /usr/include/c++/4.7/bits/stl_map.h \
  /usr/include/c++/4.7/bits/stl_multimap.h
@@ -333,6 +334,12 @@ Room.h:
 /usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h:
 
 /usr/include/c++/4.7/bits/basic_string.tcc:
+
+/usr/include/c++/4.7/list:
+
+/usr/include/c++/4.7/bits/stl_list.h:
+
+/usr/include/c++/4.7/bits/list.tcc:
 
 Game.h:
 

@@ -34,6 +34,7 @@ public:
 	Game();
 	virtual ~Game();
 	unsigned long getNextUid();
+	void doMainLoop();
 
 
 	unsigned long playerUid;

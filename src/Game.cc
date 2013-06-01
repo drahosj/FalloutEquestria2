@@ -58,4 +58,18 @@ unsigned long Game::getNextUid() {
 	return ++nextUid;
 }
 
+void Game::doMainLoop() {
+	SDL_Event event;
+	bool quit = false;
+	while (!quit) {
+		while (SDL_PollEvent(&event)) {
+			switch (event.type) {
+			case (SDL_QUIT):
+				quit = true;
+				break;
+			}
+		}
+	}
+}
+
 } /* namespace foe */

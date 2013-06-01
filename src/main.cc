@@ -19,7 +19,7 @@ int main(void) {
 	foe::Game *game;
 
 	game = new foe::Game();
-	SDL_Delay(10000);
+	game->doMainLoop();
 	std::cout << "Exiting..." << endl;
 	return 0;
 }

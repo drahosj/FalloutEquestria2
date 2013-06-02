@@ -46,6 +46,7 @@ public:
 	void drawEntity(Entity *);
 	void drawAllEntities();
 	Entity * getEntity(unsigned long);
+	void redrawAll();
 
 	SDL_Surface *surface;
 

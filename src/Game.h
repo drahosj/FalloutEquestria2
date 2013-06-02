@@ -27,7 +27,10 @@
 #include <SDL/SDL.h>
 #include "Resources.h"
 
+
 namespace foe {
+
+class Room;
 
 class Game {
 public:
@@ -40,6 +43,7 @@ public:
 	unsigned long playerUid;
 
 	Resources * resources;
+	Room * currentRoom;
 
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT;

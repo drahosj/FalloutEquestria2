@@ -48,6 +48,8 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0)
 	//testroom->drawEntity(testroom->getEntity(playerUid));
 	testroom->drawSurface();
 	SDL_Flip(screen);
+
+	currentRoom = testroom;
 }
 
 Game::~Game() {
@@ -66,6 +68,14 @@ void Game::doMainLoop() {
 			switch (event.type) {
 			case (SDL_QUIT):
 				quit = true;
+				break;
+			case (SDL_MOUSEBUTTONDOWN):
+				if (event.button.button == SDL_BUTTON_RIGHT) {
+					currentRoom->getEntity(playerUid)->x = (event.button.x - 25) / 25;
+					currentRoom->getEntity(playerUid)->y = (event.button.y - 25) / 25;
+					currentRoom->redrawAll();
+					SDL_Flip(screen);
+				}
 				break;
 			}
 		}

@@ -115,6 +115,12 @@ void Room::drawTile(int x, int y) {
 	SDL_BlitSurface(tiles[x][y]->sprite, &srcrect, surface, &dstrect);
 }
 
+void Room::redrawAll() {
+	drawAllTiles();
+	drawAllEntities();
+	drawSurface();
+}
+
 Entity * Room::getEntity(unsigned long uid) {
 	std::list<Entity *>::iterator target;
 

@@ -33,10 +33,15 @@ Resources::Resources() {
 	loadTiles();
 	loadMaps();
 	loadEntities();
+	loadUiElements();
 }
 
 Resources::~Resources() {
 	// TODO Auto-generated destructor stub
+}
+
+SDL_Surface * Resources::getUiElement(unsigned int id) {
+	return ui_elements[id];
 }
 
 void Resources::loadTiles() {
@@ -45,6 +50,11 @@ void Resources::loadTiles() {
 	tile_sprites[0x9] = loadImage("res/textures/tiles/0009_concrete_dark_0.png");
 	tile_sprites[0xa] = loadImage("res/textures/tiles/000a_concrete_dark_1.png");
 	tile_sprites[0x10] = loadImage("res/textures/tiles/0010_wall_0.png");
+}
+
+
+void Resources::loadUiElements() {
+	ui_elements[0x0] = loadImage("res/textures/ui/0000_walkpath.png");
 }
 
 void Resources::loadEntities() {

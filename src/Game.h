@@ -49,7 +49,7 @@ public:
 	Room * currentRoom;
 	int cursorMode;
 
-	std::list<Tile *> * path;
+	std::list<Tile *> * movePath;
 
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT;
@@ -59,7 +59,6 @@ public:
 	const static int CURSOR_MOVE = 1;
 
 	SDL_Surface *screen;
-	SDL_Surface *ui;
 private:
 	unsigned long nextUid;
 };

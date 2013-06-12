@@ -29,7 +29,7 @@
 
 namespace foe {
 
-Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0), cursorMode(0), path(0){
+Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0), cursorMode(0), movePath(0){
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
@@ -42,22 +42,10 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(480), SCREEN_BPP(32), nextUid(0)
 	Entity *testEntity = new Entity(2, 2, 0, testroom);
 	playerUid = testEntity->uid;
 
-	SDL_PixelFormat fmt = *screen->format;
-	ui = SDL_CreateRGBSurface(SDL_SWSURFACE, SCREEN_WIDTH, SCREEN_HEIGHT, fmt.BitsPerPixel, fmt.Rmask, fmt.Gmask, fmt.Bmask, fmt.Amask);
-	SDL_SetColorKey(ui, SDL_SRCCOLORKEY, SDL_MapRGB(ui->format, 0, 0, 0));
-
-
-	SDL_FillRect(ui, NULL, SDL_MapRGBA(&fmt, 0, 0, 0, 0));
-
-
-
 	testroom->entities->push_back(testEntity);
 
 	testroom->drawAllTiles();
 	testroom->drawAllEntities();
-	//testroom->drawEntity(testroom->getEntity(playerUid));
-	testroom->drawSurface();
-	SDL_Flip(screen);
 
 	currentRoom = testroom;
 }
@@ -80,14 +68,19 @@ void Game::doMainLoop() {
 				quit = true;
 				break;
 			case (SDL_MOUSEBUTTONDOWN):
-				SDL_FillRect(ui, NULL, SDL_MapRGBA(screen->format, 0, 0, 0, 0)); //Blank UI
 				if ((event.button.button == SDL_BUTTON_LEFT) && (cursorMode == CURSOR_MOVE)) {
 					currentRoom->getEntity(playerUid)->x = (event.button.x - 25) / 25;
 					currentRoom->getEntity(playerUid)->y = (event.button.y - 25) / 25;
 					cursorMode = CURSOR_NORMAL;
+					delete movePath;
+					movePath = 0;
+					redrawUI();
 				}
 				if ((event.button.button == SDL_BUTTON_RIGHT) && (cursorMode == CURSOR_MOVE)) {
 					cursorMode = CURSOR_NORMAL;
+					delete movePath;
+					movePath = 0;
+					redrawUI();
 				}
 				break;
 			case (SDL_MOUSEMOTION):
@@ -107,30 +100,15 @@ void Game::doMainLoop() {
 					start = currentRoom->tiles[player->x][player->y];
 					end = currentRoom->tiles[(event.motion.x - 25) / Tile::TILE_SIZE][(event.motion.y - 25) / Tile::TILE_SIZE];
 
-//					start = currentRoom->tiles[1][1];
-//					end = currentRoom->tiles[4][3];
-					delete path;
-					path = currentRoom->findPath(start, end);
-
-					SDL_FillRect(ui, NULL, SDL_MapRGBA(screen->format, 0, 0, 0, 0)); //Blank UI
-
-					SDL_Rect rect;
-					rect.x = 0;
-					rect.y = 0;
-					rect.h = Tile::TILE_SIZE;
-					rect.w = Tile::TILE_SIZE;
-
-					std::list<Tile *>::iterator iter = path->end();
-					do {
-						iter--;
-						rect.x = (*iter)->x * Tile::TILE_SIZE + 25;
-						rect.y = (*iter)->y * Tile::TILE_SIZE + 25;
-						SDL_FillRect(ui, &rect, SDL_MapRGBA(screen->format, 0, 255, 0, 80));
-					} while (iter != path->begin());
-				}
+					delete movePath;
+					movePath = currentRoom->findPath(start, end);
+								}
 				break;
 			case (SDL_KEYDOWN):
 				if (event.key.keysym.sym == SDLK_m) {
+					delete movePath;
+					movePath = 0;
+					redrawUI();
 					if (cursorMode == CURSOR_NORMAL)
 						cursorMode = CURSOR_MOVE;
 					else
@@ -146,6 +124,22 @@ void Game::doMainLoop() {
 }
 
 void Game::redrawUI() {
-	SDL_BlitSurface(ui, NULL, screen, NULL);
+	currentRoom->drawSurface();
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.h = Tile::TILE_SIZE;
+	rect.w = Tile::TILE_SIZE;
+
+	if (movePath != 0) {
+		std::list<Tile *>::iterator iter = movePath->end();
+		do {
+			iter--;
+			rect.x = (*iter)->x * Tile::TILE_SIZE + 25;
+			rect.y = (*iter)->y * Tile::TILE_SIZE + 25;
+			SDL_BlitSurface(resources->getUiElement(0x0), NULL, screen, &rect);
+		} while (iter != movePath->begin());
+		SDL_Flip(screen);
+	}
 }
 } /* namespace foe */

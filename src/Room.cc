@@ -38,7 +38,7 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 
 	map = game->resources->getMap(tid);
 	width = atoi((*map)[0].c_str());
-	height = atoi((*map)[0].c_str());
+	height = atoi((*map)[1].c_str());
 
 	pixelWidth = Tile::TILE_SIZE * width;
 	pixelHeight = Tile::TILE_SIZE * height;
@@ -165,13 +165,13 @@ void Room::createTiles() {
 
 void Room::drawSurface() {
 	SDL_Rect srcrect;
-	srcrect.h = pixelWidth;
-	srcrect.w = pixelHeight;
+	srcrect.h = pixelHeight;
+	srcrect.w = pixelWidth;
 	srcrect.x = 0;
 	srcrect.y = 0;
 	SDL_Rect dstrect;
-	dstrect.h = pixelWidth;
-	dstrect.w = pixelHeight;
+	dstrect.h = pixelHeight;
+	dstrect.w = pixelWidth;
 	dstrect.x = 25;
 	dstrect.y = 25;
 
@@ -179,8 +179,8 @@ void Room::drawSurface() {
 }
 
 void Room::drawAllTiles() {
-	for (int i  = 0; i < 12; i++) {
-		for (int j = 0; j < 12; j++) {
+	for (int i  = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
 			drawTile(i, j);
 		}
 	}

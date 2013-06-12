@@ -28,9 +28,17 @@
 
 namespace foe {
 
-Tile::Tile(int x, int y, unsigned int id, Room *room) : x(x), y(y), tid(id), room(room){
+Tile::Tile(int x, int y, unsigned int id, Room *room) : x(x), y(y), tid(id), pathable(false), room(room), predecessor(0), visited(false), distance(DIST_MAX){
 	uid = room->game->getNextUid();
 	sprite = room->game->resources->getTileSprite(tid);
+	switch (tid) {
+	case (Types::CONCRETE_0): //Add all PATHABLE=TRUE Types here
+	case (Types::CONCRETE_1):
+	case (Types::CONCRETE_DARK_0):
+	case (Types::CONCRETE_DARK_1):
+		pathable = true;
+		break;
+	}
 }
 
 Tile::~Tile() {

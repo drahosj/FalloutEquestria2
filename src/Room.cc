@@ -50,9 +50,94 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 
 }
 
+void Room::pathClearValues() {
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			tiles[i][j]->distance = Tile::DIST_MAX;
+			tiles[i][j]->visited = false;
+			tiles[i][j]->predecessor = 0;
+		}
+	}
+}
+
+Tile * Room::pathSelectNext() {
+	int best = Tile::DIST_MAX;
+	Tile *target = 0;
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			if ((tiles[i][j]->distance < best) && (!(tiles[i][j]->visited))) {
+				target = tiles[i][j];
+				best = target->distance;
+			}
+		}
+	}
+	return target;
+}
+
+void Room::pathExamineNeighbors(Tile *current) {
+	Tile *neighbor;
+	if (current->x != 0) {
+		neighbor = tiles[current->x - 1][current->y];
+		if ((!(neighbor->visited)) && (neighbor->pathable) && (neighbor->distance > (current->distance + 1))) {
+			neighbor->distance = current->distance + 1;
+			neighbor->predecessor = current;
+		}
+	}
+	if (current->x < (width - 1)) {
+		neighbor = tiles[current->x + 1][current->y];
+		if ((!(neighbor->visited)) && (neighbor->pathable) && (neighbor->distance > (current->distance + 1))) {
+			neighbor->distance = current->distance + 1;
+			neighbor->predecessor = current;
+		}
+	}
+	if (current->y != 0) {
+		neighbor = tiles[current->x][current->y - 1];
+		if ((!(neighbor->visited)) && (neighbor->pathable) && (neighbor->distance > (current->distance + 1))) {
+			neighbor->distance = current->distance + 1;
+			neighbor->predecessor = current;
+		}
+	}
+	if (current->y < (height - 1)) {
+		neighbor = tiles[current->x][current->y + 1];
+		if ((!(neighbor->visited)) && (neighbor->pathable) && (neighbor->distance > (current->distance + 1))) {
+			neighbor->distance = current->distance + 1;
+			neighbor->predecessor = current;
+		}
+	}
+}
+
+std::list<Tile *> * Room::findPath(Tile *start, Tile *end) {
+	pathClearValues();
+	start->distance = 0;
+	Tile *currentNode = 0;
+	currentNode = pathSelectNext();
+	while (true) {
+		pathExamineNeighbors(currentNode);
+		currentNode->visited = true;
+		if (currentNode == end)
+			break;
+
+		currentNode = pathSelectNext();
+		if (currentNode == 0) {
+			currentNode = start;
+			break;
+		}
+
+	}
+
+	std::list<Tile *> *path = new std::list<Tile *>;
+	while(true) {
+		path->push_back(currentNode);
+		if (currentNode == start)
+			break;
+		currentNode = currentNode->predecessor;
+	}
+	return path;
+}
+
 Room::~Room() {
-	for (int i  = 0; i < 12; i++) {
-		for (int j = 0; j < 12; j++) {
+	for (int i  = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
 			delete tiles[i][j];
 			//TODO: Delete All Entities then delete entities!
 			SDL_FreeSurface(surface);

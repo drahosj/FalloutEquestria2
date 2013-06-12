@@ -26,11 +26,13 @@
 
 #include <SDL/SDL.h>
 #include "Resources.h"
+#include <list>
 
 
 namespace foe {
 
 class Room;
+class Tile;
 
 class Game {
 public:
@@ -38,18 +40,26 @@ public:
 	virtual ~Game();
 	unsigned long getNextUid();
 	void doMainLoop();
+	void redrawUI();
 
 
 	unsigned long playerUid;
 
 	Resources * resources;
 	Room * currentRoom;
+	int cursorMode;
+
+	std::list<Tile *> * path;
 
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT;
 	const int SCREEN_BPP;
 
+	const static int CURSOR_NORMAL = 0;
+	const static int CURSOR_MOVE = 1;
+
 	SDL_Surface *screen;
+	SDL_Surface *ui;
 private:
 	unsigned long nextUid;
 };

@@ -45,6 +45,7 @@ public:
 	void drawSurface();
 	void drawEntity(Entity *);
 	void drawAllEntities();
+	std::list<Tile *> * findPath(Tile *, Tile *);
 	Entity * getEntity(unsigned long);
 	void redrawAll();
 
@@ -59,6 +60,9 @@ public:
 	std::vector<std::string> *map;
 private:
 	void createTiles();
+	Tile * pathSelectNext();
+	void pathClearValues();
+	void pathExamineNeighbors(Tile *);
 	std::list<Entity *>::iterator findEntity(std::list<Entity *>::iterator current, unsigned long);
 };
 

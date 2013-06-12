@@ -35,12 +35,19 @@ public:
 	virtual ~Tile();
 
 	const static int TILE_SIZE = 25;
+	const static int DIST_MAX = 9999;
 
 	Room *room;
 	int x, y;
 	unsigned int tid;
 	unsigned long int uid;
 	SDL_Surface *sprite;
+	bool pathable;
+
+	int distance; //Pathfinding values; volatile between pathing operations...
+	bool visited;
+	Tile *predecessor;
+
 	class Types {
 	public:
 		#include "TileTypes.h"

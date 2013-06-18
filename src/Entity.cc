@@ -30,11 +30,13 @@ namespace foe {
 Entity::Entity(int x, int y, unsigned int tid, Room *room): room(room), x(x), y(y), tid(tid) {
 	uid = room->game->getNextUid();
 
+	room->entities.push_back(this); //Add the entity to the room to which it belongs.
+
 	sprite = room->game->resources.getEntitySprite(tid);
 }
 
 Entity::~Entity() {
-	// TODO Auto-generated destructor stub
+	room->entities.remove(this);
 }
 
 } /* namespace foe */

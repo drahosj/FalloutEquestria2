@@ -53,6 +53,7 @@ private:
 	std::map<int, SDL_Surface *> ui_elements;
 
 	void loadTiles();
+	int parseRawString(std::string);
 	void loadMaps();
 	void loadEntities();
 	void loadUiElements();

@@ -45,15 +45,13 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 
 	playerUid = 0;
 
-	Room *testroom = new Room(this, 1);
 
-	Character *tc = new Character(5,5,7,5,5,8,5, this);
+	Character *tc = resources.characterFromRaw("player"); //create a character, characters exist within games (the character gets its game from the resources)
+	characters.push_back(tc); // add the character to the game's list of characters
 
-	characters.push_back(tc);
+	Room *testroom = new Room(this, 1); //create a room. Rooms exist within games
 
-	tc->entity = new Entity(2, 2, Entity::PLAYER, testroom);
-
-	testroom->entities.push_back(tc->entity);
+	tc->entity = new Entity(2, 2, Entity::PLAYER, testroom); //Create an entity. Entities only exist within rooms, but belong to entities or other whatsits
 
 	testroom->drawAllTiles();
 	testroom->drawAllEntities();
@@ -61,7 +59,7 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 	currentRoom = testroom;
 
 	uiTextPane = NULL;
-	textColor = {127, 127, 127}; //meh
+	textColor = {255, 255, 255}; //meh
 	textFont = TTF_OpenFont("res/liberation.ttf", 12);
 	char  message[500];
 	sprintf(message,

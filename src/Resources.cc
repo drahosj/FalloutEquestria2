@@ -27,6 +27,7 @@
 #include <iterator>
 #include <fstream>
 #include "Game.h"
+#include "Entity.h"
 #include "Character.h"
 
 namespace foe {
@@ -90,8 +91,7 @@ std::vector<std::string> * Resources::loadMap(char *name) {
 
 	mapfile.open(name);
 	std::vector<std::string> *input = new std::vector<std::string>;
-	while(mapfile) {
-		std::getline(mapfile, s);
+	while(std::getline(mapfile, s)) {
 		input->push_back(s);
 	}
 	mapfile.close();
@@ -103,7 +103,57 @@ std::vector<std::string> * Resources::getMap(unsigned int id) {
 }
 
 Character * Resources::characterFromRaw(std::string charName) {
-	Character *newChar = new Character(5, 5, 5, 5, 5, 5, 5, game);
+	int str, per, end, cha, intel, agi, lck;
+
+	std::ifstream rawfile;
+	std::string s;
+	std::string value;
+	std::string::iterator iter;
+
+	rawfile.open("res/raws/character/player.raw");
+
+	std::getline(rawfile, s); //throw away first line
+
+	std::getline(rawfile, s);
+	str = parseRawString(s);
+
+	std::getline(rawfile, s);
+	per = parseRawString(s);
+
+	std::getline(rawfile, s);
+	end = parseRawString(s);
+
+	std::getline(rawfile, s);
+	cha = parseRawString(s);
+
+	std::getline(rawfile, s);
+	intel = parseRawString(s);
+
+	std::getline(rawfile, s);
+	agi = parseRawString(s);
+
+	std::getline(rawfile, s);
+	lck = parseRawString(s);
+
+
+	rawfile.close();
+
+	return new Character(str, per, end, cha, intel, agi, lck, game);
+}
+
+int Resources::parseRawString(std::string str) {
+	std::string value;
+	std::string::iterator iter;
+
+	iter = str.begin();
+	while ((iter != str.end()) && (*iter != '=')) {
+		iter++;
+	}
+	while (iter != str.end()) {
+		iter++;
+		value += *iter;
+	}
+	return atoi(value.c_str());
 }
 
 void Resources::loadMaps() {

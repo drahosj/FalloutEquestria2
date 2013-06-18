@@ -11,15 +11,22 @@
 #include <iostream>
 #include <SDL/SDL.h>
 #include "Game.h"
+#include "Room.h"
 
 using namespace std;
 
 int main(void) {
-	std::cout << "Initializing SDL" << endl;
+	cout << "Initializing SDL" << endl;
 	foe::Game *game;
 
 	game = new foe::Game();
 	game->doMainLoop();
-	std::cout << "Exiting..." << endl;
+	cout << "Exiting..." << endl;
+
+	delete game;
 	return 0;
+}
+
+void WinMain() { //fuck this shit
+	main();
 }

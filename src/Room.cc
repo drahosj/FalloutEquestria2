@@ -139,16 +139,22 @@ Room::~Room() {
 	for (int i  = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
 			delete tiles[i][j];
-			SDL_FreeSurface(surface);
-			std::list<Entity *>::iterator iter = entities->begin();
-			while (iter != entities->end()) {
-				delete *iter;
-				iter++;
-			}
-			delete entities;
-			delete map;
 		}
+		delete tiles[i];
 	}
+	delete tiles;
+
+	std::list<Entity *>::iterator iter = entities->begin();
+
+	while (!entities->empty()) {
+		delete entities->front();
+		entities->pop_front();
+	}
+
+	delete entities;
+
+	SDL_FreeSurface(surface);
+
 }
 
 void Room::createTiles() {

@@ -38,6 +38,12 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 	playerUid = 0;
 
 	Room *testroom = new Room(this, 1);
+	Room *r2 = new Room(this, 1);
+
+	Room *r3 = new Room(this, 1);
+
+	delete r3;
+	delete r2;
 
 	Entity *testEntity = new Entity(2, 2, 0, testroom);
 	playerUid = testEntity->uid;

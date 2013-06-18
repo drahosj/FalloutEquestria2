@@ -34,7 +34,7 @@ int main() {
 	foe::Game *game;
 
 	game = new foe::Game();
-	game->doMainLoop();
+	//game->doMainLoop();
 	cout << "Exiting..." << endl;
 
 	delete game;

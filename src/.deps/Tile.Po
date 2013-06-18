@@ -1,381 +1,367 @@
-Tile.o: Tile.cc Tile.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_main.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_stdinc.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_config.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_platform.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sys/types.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/crtdefs.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_mac.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_secapi.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/vadefs.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sdks/_mingw_directx.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sdks/_mingw_ddk.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_off_t.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/stdio.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_print_push.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/swprintf.inl \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/stdio_s.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_print_pop.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/stdlib.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include-fixed/limits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include-fixed/syslimits.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/limits.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/stdlib_s.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/malloc.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stddef.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/stddef.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stdarg.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/stdarg.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_stdarg.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/string.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/string_s.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/strings.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/inttypes.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stdint.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/stdint.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/ctype.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/begin_code.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/close_code.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_audio.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_error.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_endian.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_mutex.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_thread.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_rwops.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_cdrom.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_cpuinfo.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_events.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_active.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_keyboard.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_keysym.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_mouse.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_video.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_joystick.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_quit.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_loadso.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_timer.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_version.h \
- TileTypes.h Room.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/vector \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_algobase.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++config.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/os_defines.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/cpu_defines.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/functexcept.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/exception_defines.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/cpp_type_traits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/type_traits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/numeric_traits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_pair.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/move.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/concept_check.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator_base_types.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator_base_funcs.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/debug/debug.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/allocator.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++allocator.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/new_allocator.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/new \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/exception \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/atomic_lockfree_defines.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/memoryfwd.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_construct.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/alloc_traits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_uninitialized.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_vector.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_bvector.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/range_access.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/vector.tcc \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/string \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stringfwd.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/char_traits.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/postypes.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/cwchar \
- /usr/i686-w64-mingw32/sys-root/mingw/include/wchar.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_stat64.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/wchar_s.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/localefwd.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++locale.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/clocale \
- /usr/i686-w64-mingw32/sys-root/mingw/include/locale.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/iosfwd \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/cctype \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/ostream_insert.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/cxxabi_forced.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_function.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/backward/binders.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/basic_string.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/atomicity.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/gthr.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/gthr-default.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/errno.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/atomic_word.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/basic_string.tcc \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/list \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_list.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/list.tcc Game.h \
- Resources.h /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_image.h \
- /usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/map \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_tree.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_map.h \
- /usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_multimap.h
+Tile.o: Tile.cc Tile.h /usr/include/SDL/SDL.h /usr/include/SDL/SDL_main.h \
+ /usr/include/SDL/SDL_stdinc.h /usr/include/SDL/SDL_config.h \
+ /usr/include/SDL/SDL_platform.h /usr/include/sys/types.h \
+ /usr/include/features.h /usr/include/stdc-predef.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/time.h \
+ /usr/lib64/gcc/x86_64-suse-linux/4.7/include/stddef.h \
+ /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/byteswap-16.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/bits/time.h \
+ /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
+ /usr/include/wchar.h \
+ /usr/lib64/gcc/x86_64-suse-linux/4.7/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h /usr/include/stdlib.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/xlocale.h /usr/include/alloca.h \
+ /usr/include/bits/stdlib-float.h /usr/include/string.h \
+ /usr/include/strings.h /usr/include/inttypes.h \
+ /usr/lib64/gcc/x86_64-suse-linux/4.7/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/ctype.h \
+ /usr/include/iconv.h /usr/include/SDL/begin_code.h \
+ /usr/include/SDL/close_code.h /usr/include/SDL/SDL_audio.h \
+ /usr/include/SDL/SDL_error.h /usr/include/SDL/SDL_endian.h \
+ /usr/include/SDL/SDL_mutex.h /usr/include/SDL/SDL_thread.h \
+ /usr/include/SDL/SDL_rwops.h /usr/include/SDL/SDL_cdrom.h \
+ /usr/include/SDL/SDL_cpuinfo.h /usr/include/SDL/SDL_events.h \
+ /usr/include/SDL/SDL_active.h /usr/include/SDL/SDL_keyboard.h \
+ /usr/include/SDL/SDL_keysym.h /usr/include/SDL/SDL_mouse.h \
+ /usr/include/SDL/SDL_video.h /usr/include/SDL/SDL_joystick.h \
+ /usr/include/SDL/SDL_quit.h /usr/include/SDL/SDL_loadso.h \
+ /usr/include/SDL/SDL_timer.h /usr/include/SDL/SDL_version.h TileTypes.h \
+ Room.h /usr/include/c++/4.7/vector \
+ /usr/include/c++/4.7/bits/stl_algobase.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/c++config.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/os_defines.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/cpu_defines.h \
+ /usr/include/c++/4.7/bits/functexcept.h \
+ /usr/include/c++/4.7/bits/exception_defines.h \
+ /usr/include/c++/4.7/bits/cpp_type_traits.h \
+ /usr/include/c++/4.7/ext/type_traits.h \
+ /usr/include/c++/4.7/ext/numeric_traits.h \
+ /usr/include/c++/4.7/bits/stl_pair.h /usr/include/c++/4.7/bits/move.h \
+ /usr/include/c++/4.7/bits/concept_check.h \
+ /usr/include/c++/4.7/bits/stl_iterator_base_types.h \
+ /usr/include/c++/4.7/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/4.7/bits/stl_iterator.h \
+ /usr/include/c++/4.7/debug/debug.h /usr/include/c++/4.7/bits/allocator.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/c++allocator.h \
+ /usr/include/c++/4.7/ext/new_allocator.h /usr/include/c++/4.7/new \
+ /usr/include/c++/4.7/exception \
+ /usr/include/c++/4.7/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/4.7/bits/stl_construct.h \
+ /usr/include/c++/4.7/ext/alloc_traits.h \
+ /usr/include/c++/4.7/bits/stl_uninitialized.h \
+ /usr/include/c++/4.7/bits/stl_vector.h \
+ /usr/include/c++/4.7/bits/stl_bvector.h \
+ /usr/include/c++/4.7/bits/range_access.h \
+ /usr/include/c++/4.7/bits/vector.tcc /usr/include/c++/4.7/string \
+ /usr/include/c++/4.7/bits/stringfwd.h \
+ /usr/include/c++/4.7/bits/char_traits.h \
+ /usr/include/c++/4.7/bits/postypes.h /usr/include/c++/4.7/cwchar \
+ /usr/include/c++/4.7/bits/localefwd.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/c++locale.h \
+ /usr/include/c++/4.7/clocale /usr/include/locale.h \
+ /usr/include/bits/locale.h /usr/include/c++/4.7/iosfwd \
+ /usr/include/c++/4.7/cctype /usr/include/c++/4.7/bits/ostream_insert.h \
+ /usr/include/c++/4.7/bits/cxxabi_forced.h \
+ /usr/include/c++/4.7/bits/stl_function.h \
+ /usr/include/c++/4.7/backward/binders.h \
+ /usr/include/c++/4.7/bits/basic_string.h \
+ /usr/include/c++/4.7/ext/atomicity.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/gthr.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/timex.h /usr/include/bits/setjmp.h \
+ /usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h \
+ /usr/include/c++/4.7/bits/basic_string.tcc /usr/include/c++/4.7/list \
+ /usr/include/c++/4.7/bits/stl_list.h /usr/include/c++/4.7/bits/list.tcc \
+ Game.h Resources.h /usr/include/SDL/SDL_image.h /usr/include/SDL/SDL.h \
+ /usr/include/c++/4.7/map /usr/include/c++/4.7/bits/stl_tree.h \
+ /usr/include/c++/4.7/bits/stl_map.h \
+ /usr/include/c++/4.7/bits/stl_multimap.h
 
 Tile.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL.h:
+/usr/include/SDL/SDL.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_main.h:
+/usr/include/SDL/SDL_main.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_stdinc.h:
+/usr/include/SDL/SDL_stdinc.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_config.h:
+/usr/include/SDL/SDL_config.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_platform.h:
+/usr/include/SDL/SDL_platform.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sys/types.h:
+/usr/include/sys/types.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/crtdefs.h:
+/usr/include/features.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw.h:
+/usr/include/stdc-predef.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_mac.h:
+/usr/include/sys/cdefs.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_secapi.h:
+/usr/include/bits/wordsize.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/vadefs.h:
+/usr/include/gnu/stubs.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sdks/_mingw_directx.h:
+/usr/include/gnu/stubs-64.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sdks/_mingw_ddk.h:
+/usr/include/bits/types.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_off_t.h:
+/usr/include/bits/typesizes.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/stdio.h:
+/usr/include/time.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_print_push.h:
+/usr/lib64/gcc/x86_64-suse-linux/4.7/include/stddef.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/swprintf.inl:
+/usr/include/endian.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/stdio_s.h:
+/usr/include/bits/endian.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_print_pop.h:
+/usr/include/bits/byteswap.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/stdlib.h:
+/usr/include/bits/byteswap-16.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include-fixed/limits.h:
+/usr/include/sys/select.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include-fixed/syslimits.h:
+/usr/include/bits/select.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/limits.h:
+/usr/include/bits/sigset.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/stdlib_s.h:
+/usr/include/bits/time.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/malloc.h:
+/usr/include/sys/sysmacros.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stddef.h:
+/usr/include/bits/pthreadtypes.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/stddef.h:
+/usr/include/stdio.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stdarg.h:
+/usr/include/libio.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/stdarg.h:
+/usr/include/_G_config.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_stdarg.h:
+/usr/include/wchar.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/string.h:
+/usr/lib64/gcc/x86_64-suse-linux/4.7/include/stdarg.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/string_s.h:
+/usr/include/bits/stdio_lim.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/strings.h:
+/usr/include/bits/sys_errlist.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/inttypes.h:
+/usr/include/bits/stdio.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/stdint.h:
+/usr/include/stdlib.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/stdint.h:
+/usr/include/bits/waitflags.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/ctype.h:
+/usr/include/bits/waitstatus.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/begin_code.h:
+/usr/include/xlocale.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/close_code.h:
+/usr/include/alloca.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_audio.h:
+/usr/include/bits/stdlib-float.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_error.h:
+/usr/include/string.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_endian.h:
+/usr/include/strings.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_mutex.h:
+/usr/include/inttypes.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_thread.h:
+/usr/lib64/gcc/x86_64-suse-linux/4.7/include/stdint.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_rwops.h:
+/usr/include/stdint.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_cdrom.h:
+/usr/include/bits/wchar.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_cpuinfo.h:
+/usr/include/ctype.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_events.h:
+/usr/include/iconv.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_active.h:
+/usr/include/SDL/begin_code.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_keyboard.h:
+/usr/include/SDL/close_code.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_keysym.h:
+/usr/include/SDL/SDL_audio.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_mouse.h:
+/usr/include/SDL/SDL_error.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_video.h:
+/usr/include/SDL/SDL_endian.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_joystick.h:
+/usr/include/SDL/SDL_mutex.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_quit.h:
+/usr/include/SDL/SDL_thread.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_loadso.h:
+/usr/include/SDL/SDL_rwops.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_timer.h:
+/usr/include/SDL/SDL_cdrom.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_version.h:
+/usr/include/SDL/SDL_cpuinfo.h:
+
+/usr/include/SDL/SDL_events.h:
+
+/usr/include/SDL/SDL_active.h:
+
+/usr/include/SDL/SDL_keyboard.h:
+
+/usr/include/SDL/SDL_keysym.h:
+
+/usr/include/SDL/SDL_mouse.h:
+
+/usr/include/SDL/SDL_video.h:
+
+/usr/include/SDL/SDL_joystick.h:
+
+/usr/include/SDL/SDL_quit.h:
+
+/usr/include/SDL/SDL_loadso.h:
+
+/usr/include/SDL/SDL_timer.h:
+
+/usr/include/SDL/SDL_version.h:
 
 TileTypes.h:
 
 Room.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/vector:
+/usr/include/c++/4.7/vector:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_algobase.h:
+/usr/include/c++/4.7/bits/stl_algobase.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++config.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/c++config.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/os_defines.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/os_defines.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/cpu_defines.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/cpu_defines.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/functexcept.h:
+/usr/include/c++/4.7/bits/functexcept.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/exception_defines.h:
+/usr/include/c++/4.7/bits/exception_defines.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/cpp_type_traits.h:
+/usr/include/c++/4.7/bits/cpp_type_traits.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/type_traits.h:
+/usr/include/c++/4.7/ext/type_traits.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/numeric_traits.h:
+/usr/include/c++/4.7/ext/numeric_traits.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_pair.h:
+/usr/include/c++/4.7/bits/stl_pair.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/move.h:
+/usr/include/c++/4.7/bits/move.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/concept_check.h:
+/usr/include/c++/4.7/bits/concept_check.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator_base_types.h:
+/usr/include/c++/4.7/bits/stl_iterator_base_types.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator_base_funcs.h:
+/usr/include/c++/4.7/bits/stl_iterator_base_funcs.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/debug/debug.h:
+/usr/include/c++/4.7/bits/stl_iterator.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_iterator.h:
+/usr/include/c++/4.7/debug/debug.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/allocator.h:
+/usr/include/c++/4.7/bits/allocator.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++allocator.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/c++allocator.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/new_allocator.h:
+/usr/include/c++/4.7/ext/new_allocator.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/new:
+/usr/include/c++/4.7/new:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/exception:
+/usr/include/c++/4.7/exception:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/atomic_lockfree_defines.h:
+/usr/include/c++/4.7/bits/atomic_lockfree_defines.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/memoryfwd.h:
+/usr/include/c++/4.7/bits/stl_construct.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_construct.h:
+/usr/include/c++/4.7/ext/alloc_traits.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/alloc_traits.h:
+/usr/include/c++/4.7/bits/stl_uninitialized.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_uninitialized.h:
+/usr/include/c++/4.7/bits/stl_vector.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_vector.h:
+/usr/include/c++/4.7/bits/stl_bvector.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_bvector.h:
+/usr/include/c++/4.7/bits/range_access.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/range_access.h:
+/usr/include/c++/4.7/bits/vector.tcc:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/vector.tcc:
+/usr/include/c++/4.7/string:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/string:
+/usr/include/c++/4.7/bits/stringfwd.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stringfwd.h:
+/usr/include/c++/4.7/bits/char_traits.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/char_traits.h:
+/usr/include/c++/4.7/bits/postypes.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/postypes.h:
+/usr/include/c++/4.7/cwchar:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/cwchar:
+/usr/include/c++/4.7/bits/localefwd.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/wchar.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/c++locale.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/_mingw_stat64.h:
+/usr/include/c++/4.7/clocale:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/sec_api/wchar_s.h:
+/usr/include/locale.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/localefwd.h:
+/usr/include/bits/locale.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/c++locale.h:
+/usr/include/c++/4.7/iosfwd:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/clocale:
+/usr/include/c++/4.7/cctype:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/locale.h:
+/usr/include/c++/4.7/bits/ostream_insert.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/iosfwd:
+/usr/include/c++/4.7/bits/cxxabi_forced.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/cctype:
+/usr/include/c++/4.7/bits/stl_function.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/ostream_insert.h:
+/usr/include/c++/4.7/backward/binders.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/cxxabi_forced.h:
+/usr/include/c++/4.7/bits/basic_string.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_function.h:
+/usr/include/c++/4.7/ext/atomicity.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/backward/binders.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/gthr.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/basic_string.h:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/gthr-default.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/ext/atomicity.h:
+/usr/include/pthread.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/gthr.h:
+/usr/include/sched.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/gthr-default.h:
+/usr/include/bits/sched.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/errno.h:
+/usr/include/bits/timex.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/i686-w64-mingw32/bits/atomic_word.h:
+/usr/include/bits/setjmp.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/basic_string.tcc:
+/usr/include/c++/4.7/x86_64-suse-linux/bits/atomic_word.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/list:
+/usr/include/c++/4.7/bits/basic_string.tcc:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_list.h:
+/usr/include/c++/4.7/list:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/list.tcc:
+/usr/include/c++/4.7/bits/stl_list.h:
+
+/usr/include/c++/4.7/bits/list.tcc:
 
 Game.h:
 
 Resources.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL_image.h:
+/usr/include/SDL/SDL_image.h:
 
-/usr/i686-w64-mingw32/sys-root/mingw/include/SDL/SDL.h:
+/usr/include/SDL/SDL.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/map:
+/usr/include/c++/4.7/map:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_tree.h:
+/usr/include/c++/4.7/bits/stl_tree.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_map.h:
+/usr/include/c++/4.7/bits/stl_map.h:
 
-/usr/lib64/gcc/i686-w64-mingw32/4.8.1/include/c++/bits/stl_multimap.h:
+/usr/include/c++/4.7/bits/stl_multimap.h:

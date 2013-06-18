@@ -42,7 +42,6 @@ Tile::Tile(int x, int y, unsigned int id, Room *room) : x(x), y(y), tid(id), pat
 }
 
 Tile::~Tile() {
-	SDL_FreeSurface(sprite);
 }
 
 } /* namespace foe */

@@ -191,28 +191,28 @@ i686-w64-mingw32-g++: fatal error: no input files
 compilation terminated.
 configure:2575: $? = 1
 configure:2595: checking whether the C++ compiler works
-configure:2617: i686-w64-mingw32-g++ -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
+configure:2617: i686-w64-mingw32-g++ -mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
 configure:2621: $? = 0
 configure:2669: result: yes
 configure:2672: checking for C++ compiler default output file name
 configure:2674: result: a.exe
 configure:2680: checking for suffix of executables
-configure:2687: i686-w64-mingw32-g++ -o conftest.exe -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
+configure:2687: i686-w64-mingw32-g++ -o conftest.exe -mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
 configure:2691: $? = 0
 configure:2713: result: .exe
 configure:2735: checking whether we are cross compiling
-configure:2743: i686-w64-mingw32-g++ -o conftest.exe -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
+configure:2743: i686-w64-mingw32-g++ -o conftest.exe -mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/   conftest.cpp  >&5
 configure:2747: $? = 0
 configure:2754: ./conftest.exe
 ./configure: line 2756: ./conftest.exe: cannot execute binary file
 configure:2758: $? = 126
 configure:2773: result: yes
 configure:2778: checking for suffix of object files
-configure:2800: i686-w64-mingw32-g++ -c -I/usr/i686-w64-mingw32/sys-root/mingw/include/  conftest.cpp >&5
+configure:2800: i686-w64-mingw32-g++ -c -mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/  conftest.cpp >&5
 configure:2804: $? = 0
 configure:2825: result: o
 configure:2829: checking whether we are using the GNU C++ compiler
-configure:2848: i686-w64-mingw32-g++ -c -I/usr/i686-w64-mingw32/sys-root/mingw/include/  conftest.cpp >&5
+configure:2848: i686-w64-mingw32-g++ -c -mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/  conftest.cpp >&5
 configure:2848: $? = 0
 configure:2857: result: yes
 configure:2866: checking whether i686-w64-mingw32-g++ accepts -g
@@ -271,7 +271,7 @@ ac_cv_env_CCC_value=
 ac_cv_env_CPPFLAGS_set=
 ac_cv_env_CPPFLAGS_value=
 ac_cv_env_CXXFLAGS_set=set
-ac_cv_env_CXXFLAGS_value=-I/usr/i686-w64-mingw32/sys-root/mingw/include/
+ac_cv_env_CXXFLAGS_value='-mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/'
 ac_cv_env_CXX_set=
 ac_cv_env_CXX_value=
 ac_cv_env_DEPS_CFLAGS_set=
@@ -326,7 +326,7 @@ AWK='gawk'
 CPPFLAGS=''
 CXX='i686-w64-mingw32-g++'
 CXXDEPMODE='depmode=gcc3'
-CXXFLAGS='-I/usr/i686-w64-mingw32/sys-root/mingw/include/'
+CXXFLAGS='-mwindows -I/usr/i686-w64-mingw32/sys-root/mingw/include/'
 CYGPATH_W='echo'
 DEFS='-DPACKAGE_NAME=\"FalloutEquestria2\" -DPACKAGE_TARNAME=\"falloutequestria2\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"FalloutEquestria2\ 1.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"falloutequestria2\" -DVERSION=\"1.0\"'
 DEPDIR='.deps'

@@ -15,7 +15,7 @@
 
 using namespace std;
 
-int main(void) {
+int main() {
 	cout << "Initializing SDL" << endl;
 	foe::Game *game;
 

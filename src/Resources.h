@@ -32,16 +32,20 @@
 
 namespace foe {
 
+class Character;
+class Game;
 class Resources {
 public:
-	Resources();
+	Resources(Game *);
 	virtual ~Resources();
 
 	SDL_Surface * getTileSprite(unsigned int);
 	SDL_Surface * getEntitySprite(unsigned int);
 	SDL_Surface * getUiElement(unsigned int);
 	std::vector<std::string> * getMap(unsigned int);
+	Character * characterFromRaw(std::string);
 	void loadAll();
+	Game *game;
 private:
 	std::map<int, SDL_Surface *> tile_sprites;
 	std::map<int, std::vector<std::string>*> maps;

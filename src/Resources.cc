@@ -26,10 +26,12 @@
 #include <algorithm>
 #include <iterator>
 #include <fstream>
+#include "Game.h"
+#include "Character.h"
 
 namespace foe {
 
-Resources::Resources() {
+Resources::Resources(Game *game) : game(game){
 }
 
 void Resources::loadAll() {
@@ -98,6 +100,10 @@ std::vector<std::string> * Resources::loadMap(char *name) {
 
 std::vector<std::string> * Resources::getMap(unsigned int id) {
 	return maps[id];
+}
+
+Character * Resources::characterFromRaw(std::string charName) {
+	Character *newChar = new Character(5, 5, 5, 5, 5, 5, 5, game);
 }
 
 void Resources::loadMaps() {

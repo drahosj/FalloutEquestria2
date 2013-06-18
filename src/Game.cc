@@ -35,7 +35,7 @@
 
 namespace foe {
 
-Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0), cursorMode(0), movePath(0){
+Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0), cursorMode(0), movePath(0), resources(this){
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 

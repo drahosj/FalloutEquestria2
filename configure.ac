@@ -11,6 +11,8 @@ AC_PROG_CXX
 
 PKG_CHECK_MODULES([DEPS], [sdl >= 1.2.0 SDL_image >= 1.2.0])
 
+LIBS="$LIBS -lSDL_ttf"
+
 AC_CONFIG_FILES(Makefile src/Makefile)
 AC_OUTPUT
 

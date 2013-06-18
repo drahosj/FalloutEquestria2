@@ -27,6 +27,7 @@
 #include <SDL/SDL.h>
 #include "Resources.h"
 #include <list>
+#include <SDL/SDL_ttf.h>
 
 
 namespace foe {
@@ -61,6 +62,9 @@ public:
 	const static int CURSOR_MOVE = 1;
 
 	SDL_Surface *screen;
+	SDL_Surface *uiTextPane;
+	SDL_Color textColor;
+	TTF_Font *textFont;
 private:
 	unsigned long nextUid;
 };

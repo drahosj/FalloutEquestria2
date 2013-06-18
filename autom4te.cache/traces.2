@@ -1,5 +1,6 @@
 m4trace:/usr/share/aclocal/pkg.m4:27: -1- AC_DEFUN([PKG_PROG_PKG_CONFIG], [m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4_pattern_allow([^PKG_CONFIG(_(PATH|LIBDIR|SYSROOT_DIR|ALLOW_SYSTEM_(CFLAGS|LIBS)))?$])
+m4_pattern_allow([^PKG_CONFIG_(DISABLE_UNINSTALLED|TOP_BUILD_DIR|DEBUG_SPEW)$])
 AC_ARG_VAR([PKG_CONFIG], [path to pkg-config utility])
 AC_ARG_VAR([PKG_CONFIG_PATH], [directories to add to pkg-config's search path])
 AC_ARG_VAR([PKG_CONFIG_LIBDIR], [path overriding pkg-config's built-in search path])
@@ -18,21 +19,21 @@ if test -n "$PKG_CONFIG"; then
 	fi
 fi[]dnl
 ])
-m4trace:/usr/share/aclocal/pkg.m4:59: -1- AC_DEFUN([PKG_CHECK_EXISTS], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+m4trace:/usr/share/aclocal/pkg.m4:60: -1- AC_DEFUN([PKG_CHECK_EXISTS], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
 if test -n "$PKG_CONFIG" && \
     AC_RUN_LOG([$PKG_CONFIG --exists --print-errors "$1"]); then
   m4_default([$2], [:])
 m4_ifvaln([$3], [else
   $3])dnl
 fi])
-m4trace:/usr/share/aclocal/pkg.m4:84: -1- AC_DEFUN([_PKG_SHORT_ERRORS_SUPPORTED], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])
+m4trace:/usr/share/aclocal/pkg.m4:86: -1- AC_DEFUN([_PKG_SHORT_ERRORS_SUPPORTED], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])
 if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
         _pkg_short_errors_supported=yes
 else
         _pkg_short_errors_supported=no
 fi[]dnl
 ])
-m4trace:/usr/share/aclocal/pkg.m4:104: -1- AC_DEFUN([PKG_CHECK_MODULES], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
+m4trace:/usr/share/aclocal/pkg.m4:106: -1- AC_DEFUN([PKG_CHECK_MODULES], [AC_REQUIRE([PKG_PROG_PKG_CONFIG])dnl
 AC_ARG_VAR([$1][_CFLAGS], [C compiler flags for $1, overriding pkg-config])dnl
 AC_ARG_VAR([$1][_LIBS], [linker flags for $1, overriding pkg-config])dnl
 
@@ -50,9 +51,9 @@ if test $pkg_failed = yes; then
    	AC_MSG_RESULT([no])
         _PKG_SHORT_ERRORS_SUPPORTED
         if test $_pkg_short_errors_supported = yes; then
-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "$2" 2>&1`
         else 
-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors "$2" 2>&1`
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "$2" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
@@ -84,6 +85,26 @@ else
         AC_MSG_RESULT([yes])
 	$3
 fi[]dnl
+])
+m4trace:/usr/share/aclocal/pkg.m4:169: -1- AC_DEFUN([PKG_INSTALLDIR], [m4_pushdef([pkg_default], [m4_default([$1], ['${libdir}/pkgconfig'])])
+m4_pushdef([pkg_description],
+    [pkg-config installation directory @<:@]pkg_default[@:>@])
+AC_ARG_WITH([pkgconfigdir],
+    [AS_HELP_STRING([--with-pkgconfigdir], pkg_description)],,
+    [with_pkgconfigdir=]pkg_default)
+AC_SUBST([pkgconfigdir], [$with_pkgconfigdir])
+m4_popdef([pkg_default])
+m4_popdef([pkg_description])
+])
+m4trace:/usr/share/aclocal/pkg.m4:189: -1- AC_DEFUN([PKG_NOARCH_INSTALLDIR], [m4_pushdef([pkg_default], [m4_default([$1], ['${datadir}/pkgconfig'])])
+m4_pushdef([pkg_description],
+    [pkg-config arch-independent installation directory @<:@]pkg_default[@:>@])
+AC_ARG_WITH([noarch-pkgconfigdir],
+    [AS_HELP_STRING([--with-noarch-pkgconfigdir], pkg_description)],,
+    [with_noarch_pkgconfigdir=]pkg_default)
+AC_SUBST([noarch_pkgconfigdir], [$with_noarch_pkgconfigdir])
+m4_popdef([pkg_default])
+m4_popdef([pkg_description])
 ])
 m4trace:/usr/share/aclocal-1.12/amversion.m4:16: -1- AC_DEFUN([AM_AUTOMAKE_VERSION], [am__api_version='1.12'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
@@ -901,21 +922,24 @@ m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([am__fastdepCXX_FALSE])
 m4trace:configure.ac:12: -1- PKG_CHECK_MODULES([DEPS], [sdl >= 1.2.0 SDL_image >= 1.2.0])
 m4trace:configure.ac:12: -1- PKG_PROG_PKG_CONFIG
 m4trace:configure.ac:12: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG(_PATH)?$])
+m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG(_(PATH|LIBDIR|SYSROOT_DIR|ALLOW_SYSTEM_(CFLAGS|LIBS)))?$])
+m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG_(DISABLE_UNINSTALLED|TOP_BUILD_DIR|DEBUG_SPEW)$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG_PATH$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG_LIBDIR$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^PKG_CONFIG$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^DEPS_CFLAGS$])
 m4trace:configure.ac:12: -1- m4_pattern_allow([^DEPS_LIBS$])
-m4trace:configure.ac:12: -1- PKG_CHECK_EXISTS([sdl >= 1.2.0 SDL_image >= 1.2.0], [pkg_cv_[]DEPS_CFLAGS=`$PKG_CONFIG --[]cflags "sdl >= 1.2.0 SDL_image >= 1.2.0" 2>/dev/null`], [pkg_failed=yes])
-m4trace:configure.ac:12: -1- PKG_CHECK_EXISTS([sdl >= 1.2.0 SDL_image >= 1.2.0], [pkg_cv_[]DEPS_LIBS=`$PKG_CONFIG --[]libs "sdl >= 1.2.0 SDL_image >= 1.2.0" 2>/dev/null`], [pkg_failed=yes])
+m4trace:configure.ac:12: -1- PKG_CHECK_EXISTS([sdl >= 1.2.0 SDL_image >= 1.2.0], [pkg_cv_[]DEPS_CFLAGS=`$PKG_CONFIG --[]cflags "sdl >= 1.2.0 SDL_image >= 1.2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:12: -1- PKG_CHECK_EXISTS([sdl >= 1.2.0 SDL_image >= 1.2.0], [pkg_cv_[]DEPS_LIBS=`$PKG_CONFIG --[]libs "sdl >= 1.2.0 SDL_image >= 1.2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
 m4trace:configure.ac:12: -1- _PKG_SHORT_ERRORS_SUPPORTED
-m4trace:configure.ac:15: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:15: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:15: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:15: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:15: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:15: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:15: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:15: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:17: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:17: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:17: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:17: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:17: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:17: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:17: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:17: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

@@ -27,11 +27,17 @@
 #include "Tile.h"
 #include "Character.h"
 #include <list>
+#include <stdio.h>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <sstream>
 
 namespace foe {
 
 Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0), cursorMode(0), movePath(0){
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
@@ -41,7 +47,7 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 
 	Room *testroom = new Room(this, 1);
 
-	Character *tc = new Character(5,5,5,5,5,5,5, this);
+	Character *tc = new Character(5,5,7,5,5,8,5, this);
 
 	characters.push_back(tc);
 
@@ -53,6 +59,44 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 	testroom->drawAllEntities();
 
 	currentRoom = testroom;
+
+	uiTextPane = NULL;
+	textColor = {127, 127, 127}; //meh
+	textFont = TTF_OpenFont("res/liberation.ttf", 12);
+	char  message[500];
+	sprintf(message,
+			"Strength: %d\n"
+			"Perception: %d\n"
+			"Endurance: %d\n"
+			"Charisma: %d\n"
+			"Intelligence: %d\n"
+			"Agility: %d\n"
+			"Luck: %d\n\n"
+			"Press 'm' and left-\n    click to move!\n"
+			"Right click to cancel",
+			tc->derivedSpecial.strength,
+			tc->derivedSpecial.perception,
+			tc->derivedSpecial.endurance,
+			tc->derivedSpecial.charisma,
+			tc->derivedSpecial.intelligence,
+			tc->derivedSpecial.agility,
+			tc->derivedSpecial.luck);
+
+	std::istringstream msg(message);
+	std::string line;
+	SDL_PixelFormat *format = screen->format;
+	SDL_Surface *tmp = NULL;
+	uiTextPane = SDL_CreateRGBSurface(screen->flags, 250, 250, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.w = uiTextPane->w;
+	rect.h = 12; //font height
+	while (std::getline(msg, line)) {
+		tmp = TTF_RenderText_Solid(textFont, line.c_str(), textColor);
+		SDL_BlitSurface(tmp, NULL, uiTextPane, &rect);
+		rect.y += TTF_FontLineSkip(textFont);
+	}
 }
 
 Game::~Game() {
@@ -169,7 +213,12 @@ void Game::redrawUI() {
 			iter++;
 			dist++;
 		} while (iter != movePath->end());
-		SDL_Flip(screen);
 	}
+	rect.y = 25;
+	rect.x = 17 * 25 + 20; //hackish
+	rect.h = uiTextPane->h;
+	rect.w = uiTextPane->w;
+	SDL_BlitSurface(uiTextPane, NULL, screen, &rect);
+	SDL_Flip(screen);
 }
 } /* namespace foe */

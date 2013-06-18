@@ -45,7 +45,13 @@ Character::Character(int s, int p, int e, int c, int i, int a, int l, Game *game
 void Character::refreshStats() {
 	derivedSpecial = baseSpecial; //meh, works for now
 
-	walkDistance = (derivedSpecial.endurance + derivedSpecial.agility * 2) + 1 / 2; //+1 = shitty round up
+//	walkDistance = (derivedSpecial.endurance + derivedSpecial.agility * 2) + 1 / 2; //+1 = shitty round up
+	int end, agi;
+	end = derivedSpecial.endurance;
+	agi = derivedSpecial.agility;
+
+	walkDistance = (((end + (2 * agi) + 1) / 2) * 3) / 5;
+
 }
 
 Character::~Character() {

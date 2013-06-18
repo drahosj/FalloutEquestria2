@@ -1,5 +1,8 @@
 src/*.o
 src/fallout_equestria
 src/.deps
+config.log
+config.status
+autom4te.cache
 src/Makefile
 Makefile

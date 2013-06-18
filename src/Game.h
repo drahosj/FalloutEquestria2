@@ -33,6 +33,7 @@ namespace foe {
 
 class Room;
 class Tile;
+class Character;
 
 class Game {
 public:
@@ -50,6 +51,7 @@ public:
 	int cursorMode;
 
 	std::list<Tile *> * movePath;
+	std::list<Character *> characters;
 
 	const int SCREEN_WIDTH;
 	const int SCREEN_HEIGHT;

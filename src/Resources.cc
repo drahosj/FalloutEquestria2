@@ -30,6 +30,9 @@
 namespace foe {
 
 Resources::Resources() {
+}
+
+void Resources::loadAll() {
 	loadTiles();
 	loadMaps();
 	loadEntities();
@@ -55,6 +58,7 @@ void Resources::loadTiles() {
 
 void Resources::loadUiElements() {
 	ui_elements[0x0] = loadImage("res/textures/ui/0000_walkpath.png");
+	ui_elements[0x1] = loadImage("res/textures/ui/0001_walk_red.png");
 }
 
 void Resources::loadEntities() {

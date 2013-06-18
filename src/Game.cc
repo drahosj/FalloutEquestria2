@@ -25,6 +25,7 @@
 #include "Room.h"
 #include "Entity.h"
 #include "Tile.h"
+#include "Character.h"
 #include <list>
 
 namespace foe {
@@ -34,14 +35,19 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
+	resources.loadAll();
+
 	playerUid = 0;
 
 	Room *testroom = new Room(this, 1);
 
-	Entity *testEntity = new Entity(2, 2, 0, testroom);
-	playerUid = testEntity->uid;
+	Character *tc = new Character(5,5,5,5,5,5,5, this);
 
-	testroom->entities.push_back(testEntity);
+	characters.push_back(tc);
+
+	tc->entity = new Entity(2, 2, Entity::PLAYER, testroom);
+
+	testroom->entities.push_back(tc->entity);
 
 	testroom->drawAllTiles();
 	testroom->drawAllEntities();
@@ -68,8 +74,16 @@ void Game::doMainLoop() {
 				break;
 			case (SDL_MOUSEBUTTONDOWN):
 				if ((event.button.button == SDL_BUTTON_LEFT) && (cursorMode == CURSOR_MOVE)) {
-					currentRoom->getEntity(playerUid)->x = (event.button.x - 25) / 25;
-					currentRoom->getEntity(playerUid)->y = (event.button.y - 25) / 25;
+					std::list<Tile *>::iterator iter = movePath->begin();
+					int dist = 0;
+					while ((iter != movePath->end()) && (dist <= (*characters.begin())->walkDistance)) {
+						iter++;
+						dist++;
+					}
+					iter--;
+
+					(*characters.begin())->entity->x = (*iter)->x;
+					(*characters.begin())->entity->y = (*iter)->y;
 					cursorMode = CURSOR_NORMAL;
 					delete movePath;
 					movePath = 0;
@@ -94,24 +108,36 @@ void Game::doMainLoop() {
 						break;
 
 					Tile *start, *end;
-					Entity *player = currentRoom->getEntity(playerUid);
+					Entity *player = (*characters.begin())->entity;
 
 					start = currentRoom->tiles[player->x][player->y];
 					end = currentRoom->tiles[(event.motion.x - 25) / Tile::TILE_SIZE][(event.motion.y - 25) / Tile::TILE_SIZE];
 
 					delete movePath;
 					movePath = currentRoom->findPath(start, end);
-								}
+				}
 				break;
 			case (SDL_KEYDOWN):
 				if (event.key.keysym.sym == SDLK_m) {
-					delete movePath;
-					movePath = 0;
-					redrawUI();
-					if (cursorMode == CURSOR_NORMAL)
+					if (cursorMode == CURSOR_NORMAL) {
+						Tile *start, *end;
+						int x, y;
+						SDL_GetMouseState(&x, &y);
+
+						Character *player = *characters.begin();
+
+						start = currentRoom->tiles[player->entity->x][player->entity->y];
+						end = currentRoom->tiles[(x - 25) / Tile::TILE_SIZE][(y - 25) / Tile::TILE_SIZE];
+						delete movePath;
+						movePath = currentRoom->findPath(start, end);
 						cursorMode = CURSOR_MOVE;
-					else
+					}
+					else {
 						cursorMode = CURSOR_NORMAL;
+						delete movePath;
+						movePath = 0;
+
+					}
 				}
 				break;
 			}
@@ -130,14 +156,19 @@ void Game::redrawUI() {
 	rect.h = Tile::TILE_SIZE;
 	rect.w = Tile::TILE_SIZE;
 
+	int dist = 0;
 	if (movePath != 0) {
-		std::list<Tile *>::iterator iter = movePath->end();
+		std::list<Tile *>::iterator iter = movePath->begin();
 		do {
-			iter--;
 			rect.x = (*iter)->x * Tile::TILE_SIZE + 25;
 			rect.y = (*iter)->y * Tile::TILE_SIZE + 25;
-			SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
-		} while (iter != movePath->begin());
+			if (dist <= (*characters.begin())->walkDistance)
+				SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
+			else
+				SDL_BlitSurface(resources.getUiElement(0x1), NULL, screen, &rect);
+			iter++;
+			dist++;
+		} while (iter != movePath->end());
 		SDL_Flip(screen);
 	}
 }

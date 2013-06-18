@@ -124,7 +124,7 @@ std::list<Tile *> * Room::findPath(Tile *start, Tile *end) {
 
 	std::list<Tile *> *path = new std::list<Tile *>;
 	while(true) {
-		path->push_back(currentNode);
+		path->push_front(currentNode);
 		if (currentNode == start)
 			break;
 		currentNode = currentNode->predecessor;

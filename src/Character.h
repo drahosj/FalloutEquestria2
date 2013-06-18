@@ -27,11 +27,30 @@
 #include "Entity.h"
 
 namespace foe {
+class Game;
 
-class Character: public foe::Entity {
+class Character {
 public:
-	Character();
+	Character(int, int, int, int, int, int, int, Game *);
 	virtual ~Character();
+	struct Special {
+		int strength;
+		int perception;
+		int endurance;
+		int charisma;
+		int intelligence;
+		int agility;
+		int luck;
+	};
+
+	int walkDistance;
+	unsigned long int uid;
+
+	Special baseSpecial;
+	Special derivedSpecial;
+	Entity *entity;
+
+	void refreshStats();
 };
 
 } /* namespace foe */

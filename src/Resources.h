@@ -41,6 +41,7 @@ public:
 	SDL_Surface * getEntitySprite(unsigned int);
 	SDL_Surface * getUiElement(unsigned int);
 	std::vector<std::string> * getMap(unsigned int);
+	void loadAll();
 private:
 	std::map<int, SDL_Surface *> tile_sprites;
 	std::map<int, std::vector<std::string>*> maps;

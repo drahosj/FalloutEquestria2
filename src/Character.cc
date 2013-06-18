@@ -22,12 +22,30 @@
  */
 
 #include "Character.h"
+#include "Game.h"
+#include "Entity.h"
 
 namespace foe {
 
-Character::Character() {
-	// TODO Auto-generated constructor stub
+Character::Character(int s, int p, int e, int c, int i, int a, int l, Game *game) {
+	baseSpecial.strength = s;
+	baseSpecial.perception = p;
+	baseSpecial.endurance = e;
+	baseSpecial.charisma = c;
+	baseSpecial.intelligence = i;
+	baseSpecial.agility = a;
+	baseSpecial.luck = l;
 
+	entity = 0;
+
+	uid = game->getNextUid();
+	refreshStats();
+}
+
+void Character::refreshStats() {
+	derivedSpecial = baseSpecial; //meh, works for now
+
+	walkDistance = (derivedSpecial.endurance + derivedSpecial.agility * 2) + 1 / 2; //+1 = shitty round up
 }
 
 Character::~Character() {

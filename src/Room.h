@@ -51,7 +51,7 @@ public:
 
 	SDL_Surface *surface;
 
-	std::list<Entity *> *entities;
+	std::list<Entity *> entities;
 	Tile ***tiles;
 	unsigned long int uid;
 	unsigned int tid;

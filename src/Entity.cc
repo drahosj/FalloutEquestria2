@@ -30,7 +30,7 @@ namespace foe {
 Entity::Entity(int x, int y, unsigned int tid, Room *room): room(room), x(x), y(y), tid(tid) {
 	uid = room->game->getNextUid();
 
-	sprite = room->game->resources->getEntitySprite(tid);
+	sprite = room->game->resources.getEntitySprite(tid);
 }
 
 Entity::~Entity() {

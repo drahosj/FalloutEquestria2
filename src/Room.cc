@@ -36,7 +36,7 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 	uid = game->getNextUid();
 	SDL_PixelFormat *format = game->screen->format;
 
-	map = game->resources->getMap(tid);
+	map = game->resources.getMap(tid);
 	width = atoi((*map)[0].c_str());
 	height = atoi((*map)[1].c_str());
 
@@ -45,9 +45,6 @@ Room::Room(Game *game, unsigned int id): game(game), tid(id) {
 
 	surface = SDL_CreateRGBSurface(game->screen->flags, pixelWidth, pixelHeight, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
 	createTiles();
-
-	entities = new std::list<Entity *>;
-
 }
 
 void Room::pathClearValues() {
@@ -144,17 +141,13 @@ Room::~Room() {
 	}
 	delete tiles;
 
-	std::list<Entity *>::iterator iter = entities->begin();
+	std::list<Entity *>::iterator iter = entities.begin();
 
-	while (!entities->empty()) {
-		delete entities->front();
-		entities->pop_front();
+	while (!entities.empty()) {
+		delete entities.front();
+		entities.pop_front();
 	}
-
-	delete entities;
-
 	SDL_FreeSurface(surface);
-
 }
 
 void Room::createTiles() {
@@ -220,7 +213,7 @@ void Room::redrawAll() {
 Entity * Room::getEntity(unsigned long uid) {
 	std::list<Entity *>::iterator target;
 
-	target = findEntity(entities->begin(), uid);
+	target = findEntity(entities.begin(), uid);
 
 	return *target;
 }
@@ -247,10 +240,10 @@ void Room::drawEntity(Entity *entity) {
 }
 
 void Room::drawAllEntities() {
-	std::list<Entity *>::iterator current = entities->begin();
+	std::list<Entity *>::iterator current = entities.begin();
 	do {
 		drawEntity(*current);
 		current++;
-	} while (current != entities->end());
+	} while (current != entities.end());
 }
 } /* namespace foe */

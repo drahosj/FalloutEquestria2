@@ -34,21 +34,14 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
-	resources = new Resources();
 	playerUid = 0;
 
 	Room *testroom = new Room(this, 1);
-	Room *r2 = new Room(this, 1);
-
-	Room *r3 = new Room(this, 1);
-
-	delete r3;
-	delete r2;
 
 	Entity *testEntity = new Entity(2, 2, 0, testroom);
 	playerUid = testEntity->uid;
 
-	testroom->entities->push_back(testEntity);
+	testroom->entities.push_back(testEntity);
 
 	testroom->drawAllTiles();
 	testroom->drawAllEntities();
@@ -143,7 +136,7 @@ void Game::redrawUI() {
 			iter--;
 			rect.x = (*iter)->x * Tile::TILE_SIZE + 25;
 			rect.y = (*iter)->y * Tile::TILE_SIZE + 25;
-			SDL_BlitSurface(resources->getUiElement(0x0), NULL, screen, &rect);
+			SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
 		} while (iter != movePath->begin());
 		SDL_Flip(screen);
 	}

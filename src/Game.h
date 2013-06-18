@@ -45,7 +45,7 @@ public:
 
 	unsigned long playerUid;
 
-	Resources * resources;
+	Resources resources;
 	Room * currentRoom;
 	int cursorMode;
 

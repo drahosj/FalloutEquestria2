@@ -109,8 +109,11 @@ Character * Resources::characterFromRaw(std::string charName) {
 	std::string s;
 	std::string value;
 	std::string::iterator iter;
+	std::string fileName = "res/raws/character/";
+	fileName+= charName;
+	fileName+= ".raw";
 
-	rawfile.open("res/raws/character/player.raw");
+	rawfile.open(fileName.c_str());
 
 	std::getline(rawfile, s); //throw away first line
 

@@ -29,7 +29,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char **argv) {
 	cout << "Initializing SDL" << endl;
 	foe::Game *game;
 

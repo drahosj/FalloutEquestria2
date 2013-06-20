@@ -29,7 +29,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char **argv) {
 	cout << "Initializing SDL" << endl;
 	foe::Game *game;
 
@@ -38,10 +38,5 @@ int main() {
 	cout << "Exiting..." << endl;
 
 	delete game;
-	return 0;
-}
-
-int WinMain() { //fuck this shit
-	main();
 	return 0;
 }

@@ -47,7 +47,7 @@ public:
 			return false;
 	}
 
-	#include <EntityTypes.h>
+	#include "EntityTypes.h"
 
 };
 

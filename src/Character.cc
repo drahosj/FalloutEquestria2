@@ -24,6 +24,7 @@
 #include "Character.h"
 #include "Game.h"
 #include "Entity.h"
+#include "Room.h"
 
 namespace foe {
 
@@ -42,6 +43,14 @@ Character::Character(int s, int p, int e, int c, int i, int a, int l, Game *game
 	refreshStats();
 }
 
+
+void Character::enterRoom(Room *room, int x, int y, unsigned int entityType) {
+	if (entity != 0) {
+		delete entity;
+	}
+
+	entity = new Entity(x, y, entityType, room);
+}
 void Character::refreshStats() {
 	derivedSpecial = baseSpecial; //meh, works for now
 

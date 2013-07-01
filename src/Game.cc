@@ -51,14 +51,14 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 
 	Room *testroom = new Room(this, 1); //create a room. Rooms exist within games
 
-	tc->entity = new Entity(2, 2, Entity::PLAYER, testroom); //Create an entity. Entities only exist within rooms, but belong to entities or other whatsits
+	tc->enterRoom(testroom, 2, 2, Entity::PLAYER); //Create an entity. Entities only exist within rooms, but belong to entities or other whatsits
 
-	testroom->drawAllTiles();
-	testroom->drawAllEntities();
 
 	testroom->tiles[1][1]->travelTarget = testroom->tiles[8][1];
 
 	currentRoom = testroom;
+
+	Room *otherroom = new Room(this, 2);
 
 
 	//BEGIN SPECIAL PANE GENERATION ---- THIS SHOULD BE SEPARATE //todo separate them

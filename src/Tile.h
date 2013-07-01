@@ -43,6 +43,7 @@ public:
 	unsigned long int uid;
 	SDL_Surface *sprite;
 	bool pathable;
+	Tile * travelTarget;
 
 	int distance; //Pathfinding values; volatile between pathing operations...
 	bool visited;

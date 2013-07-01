@@ -35,7 +35,7 @@
 
 namespace foe {
 
-Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0), cursorMode(0), movePath(0), resources(this){
+Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 
@@ -58,7 +58,9 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 
 	currentRoom = testroom;
 
-	uiTextPane = NULL;
+
+	//BEGIN SPECIAL PANE GENERATION ---- THIS SHOULD BE SEPARATE //todo separate them
+	uiSpecialPane = NULL;
 	textColor = {255, 255, 255}; //meh
 	textFont = TTF_OpenFont("res/liberation.ttf", 12);
 	char  message[500];
@@ -84,17 +86,18 @@ Game::Game() : SCREEN_WIDTH(640), SCREEN_HEIGHT(640), SCREEN_BPP(32), nextUid(0)
 	std::string line;
 	SDL_PixelFormat *format = screen->format;
 	SDL_Surface *tmp = NULL;
-	uiTextPane = SDL_CreateRGBSurface(screen->flags, 250, 250, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
+	uiSpecialPane = SDL_CreateRGBSurface(screen->flags, 250, 250, format->BitsPerPixel, format->Rmask, format->Gmask, format->Bmask, format->Amask);
 	SDL_Rect rect;
 	rect.x = 0;
 	rect.y = 0;
-	rect.w = uiTextPane->w;
+	rect.w = uiSpecialPane->w;
 	rect.h = 12; //font height
 	while (std::getline(msg, line)) {
 		tmp = TTF_RenderText_Solid(textFont, line.c_str(), textColor);
-		SDL_BlitSurface(tmp, NULL, uiTextPane, &rect);
+		SDL_BlitSurface(tmp, NULL, uiSpecialPane, &rect);
 		rect.y += TTF_FontLineSkip(textFont);
 	}
+	//THIS NEEDS TO BE SEPARATED!!
 }
 
 Game::~Game() {
@@ -114,7 +117,7 @@ void Game::doMainLoop() {
 			case (SDL_QUIT):
 				quit = true;
 				break;
-			case (SDL_MOUSEBUTTONDOWN):
+			case (SDL_MOUSEBUTTONDOWN): //			=======================MOUSEBUTTONDOWN=================================
 				if ((event.button.button == SDL_BUTTON_LEFT) && (cursorMode == CURSOR_MOVE)) {
 					std::list<Tile *>::iterator iter = movePath->begin();
 					int dist = 0;
@@ -138,7 +141,7 @@ void Game::doMainLoop() {
 					redrawUI();
 				}
 				break;
-			case (SDL_MOUSEMOTION):
+			case (SDL_MOUSEMOTION)://                =========================MOUSEMOTION=====================================
 				if (cursorMode == CURSOR_MOVE) {
 					if (event.motion.x < 25)
 						break;
@@ -159,7 +162,7 @@ void Game::doMainLoop() {
 					movePath = currentRoom->findPath(start, end);
 				}
 				break;
-			case (SDL_KEYDOWN):
+			case (SDL_KEYDOWN):// ==================================================KEYDOWN===========================================
 				if (event.key.keysym.sym == SDLK_m) {
 					if (cursorMode == CURSOR_NORMAL) {
 						Tile *start, *end;
@@ -202,8 +205,8 @@ void Game::redrawUI() {
 	if (movePath != 0) {
 		std::list<Tile *>::iterator iter = movePath->begin();
 		do {
-			rect.x = (*iter)->x * Tile::TILE_SIZE + 25;
-			rect.y = (*iter)->y * Tile::TILE_SIZE + 25;
+			rect.x = (*iter)->x * Tile::TILE_SIZE + ROOM_X;
+			rect.y = (*iter)->y * Tile::TILE_SIZE + ROOM_Y;
 			if (dist <= (*characters.begin())->walkDistance)
 				SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
 			else
@@ -212,11 +215,18 @@ void Game::redrawUI() {
 			dist++;
 		} while (iter != movePath->end());
 	}
-	rect.y = 25;
-	rect.x = 17 * 25 + 20; //hackish
-	rect.h = uiTextPane->h;
-	rect.w = uiTextPane->w;
-	SDL_BlitSurface(uiTextPane, NULL, screen, &rect);
+	rect.x = RIGHT_PANE_X; //Draw RIGHT PANE Background
+	rect.y = RIGHT_PANE_Y;
+	rect.h = 0;
+	rect.w = 0;
+	//SDL_BlitSurface(resources.getUiElement(0x02), NULL, screen, &rect);
+
+	rect.x = RIGHT_PANE_X + SPECIAL_PANE_X; //Draw SPECIAL Pane
+	rect.y = RIGHT_PANE_Y + SPECIAL_PANE_Y;
+	rect.h = 0;
+	rect.w = 0;
+	SDL_BlitSurface(uiSpecialPane, NULL, screen, &rect);
+
 	SDL_Flip(screen);
 }
 } /* namespace foe */

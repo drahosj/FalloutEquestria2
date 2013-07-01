@@ -54,15 +54,22 @@ public:
 	std::list<Tile *> * movePath;
 	std::list<Character *> characters;
 
-	const int SCREEN_WIDTH;
-	const int SCREEN_HEIGHT;
-	const int SCREEN_BPP;
+	static const int SCREEN_WIDTH = 640;
+	static const int SCREEN_HEIGHT = 640;
+	static const int SCREEN_BPP = 32;
+
+	static const int RIGHT_PANE_X = 425;
+	static const int RIGHT_PANE_Y = 0;
+	static const int SPECIAL_PANE_X = 20;
+	static const int SPECIAL_PANE_Y = 25;
+	static const int ROOM_X = 25;
+	static const int ROOM_Y = 25;
 
 	const static int CURSOR_NORMAL = 0;
 	const static int CURSOR_MOVE = 1;
 
 	SDL_Surface *screen;
-	SDL_Surface *uiTextPane;
+	SDL_Surface *uiSpecialPane;
 	SDL_Color textColor;
 	TTF_Font *textFont;
 private:

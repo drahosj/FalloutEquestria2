@@ -176,8 +176,8 @@ void Room::drawSurface() {
 	SDL_Rect dstrect;
 	dstrect.h = pixelHeight;
 	dstrect.w = pixelWidth;
-	dstrect.x = 25;
-	dstrect.y = 25;
+	dstrect.x = Game::ROOM_X;
+	dstrect.y = Game::ROOM_Y;
 
 	SDL_BlitSurface(surface, &srcrect, game->screen, &dstrect);
 }

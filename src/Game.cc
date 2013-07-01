@@ -97,6 +97,7 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 		SDL_BlitSurface(tmp, NULL, uiSpecialPane, &rect);
 		rect.y += TTF_FontLineSkip(textFont);
 	}
+	SDL_SetColorKey(uiSpecialPane, SDL_SRCCOLORKEY, SDL_MapRGB(format, 0, 0, 0));
 	//THIS NEEDS TO BE SEPARATED!!
 }
 
@@ -219,7 +220,7 @@ void Game::redrawUI() {
 	rect.y = RIGHT_PANE_Y;
 	rect.h = 0;
 	rect.w = 0;
-	//SDL_BlitSurface(resources.getUiElement(0x02), NULL, screen, &rect);
+	SDL_BlitSurface(resources.getUiElement(0x02), NULL, screen, &rect);
 
 	rect.x = RIGHT_PANE_X + SPECIAL_PANE_X; //Draw SPECIAL Pane
 	rect.y = RIGHT_PANE_Y + SPECIAL_PANE_Y;

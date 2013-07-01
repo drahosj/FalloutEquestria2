@@ -63,6 +63,7 @@ void Resources::loadUiElements() {
 	ui_elements[0x0] = loadImage("res/textures/ui/0000_walkpath.png");
 	ui_elements[0x1] = loadImage("res/textures/ui/0001_walk_red.png");
 	ui_elements[0x2] = loadImage("res/textures/ui/0002_pane_right.png");
+	ui_elements[0x3] = loadImage("res/textures/ui/0003_walk_blue.png");
 }
 
 void Resources::loadEntities() {

@@ -56,6 +56,8 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 	testroom->drawAllTiles();
 	testroom->drawAllEntities();
 
+	testroom->tiles[1][1]->travelTarget = testroom->tiles[8][1];
+
 	currentRoom = testroom;
 
 
@@ -128,8 +130,17 @@ void Game::doMainLoop() {
 					}
 					iter--;
 
-					(*characters.begin())->entity->x = (*iter)->x;
-					(*characters.begin())->entity->y = (*iter)->y;
+					if ((*iter)->travelTarget == 0){ //Not a door/transition
+						(*characters.begin())->entity->x = (*iter)->x; //MOVE CHARACTER!
+						(*characters.begin())->entity->y = (*iter)->y;
+					} else if (((*iter)->travelTarget->room == currentRoom) && (*iter == movePath->back())) { //Same room door, lolwut
+						(*characters.begin())->entity->x = (*iter)->travelTarget->x;
+						(*characters.begin())->entity->y = (*iter)->travelTarget->y;
+					} else { //Not a door/transition
+						(*characters.begin())->entity->x = (*iter)->x; //MOVE CHARACTER!
+						(*characters.begin())->entity->y = (*iter)->y;
+					}
+
 					cursorMode = CURSOR_NORMAL;
 					delete movePath;
 					movePath = 0;
@@ -206,9 +217,13 @@ void Game::redrawUI() {
 	if (movePath != 0) {
 		std::list<Tile *>::iterator iter = movePath->begin();
 		do {
+
 			rect.x = (*iter)->x * Tile::TILE_SIZE + ROOM_X;
 			rect.y = (*iter)->y * Tile::TILE_SIZE + ROOM_Y;
-			if (dist <= (*characters.begin())->walkDistance)
+			if (((*(iter))->travelTarget != 0) && (*iter = movePath->back())) { //if is a transition
+				SDL_BlitSurface(resources.getUiElement(0x3), NULL, screen, &rect);
+			}
+			else if (dist <= (*characters.begin())->walkDistance)
 				SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
 			else
 				SDL_BlitSurface(resources.getUiElement(0x1), NULL, screen, &rect);

@@ -163,6 +163,7 @@ int Resources::parseRawString(std::string str) {
 
 void Resources::loadMaps() {
 	maps[0x1] = loadMap("res/maps/01.mpf");
+	maps[0x2] = loadMap("res/maps/02.mpf");
 
 }
 } /* namespace foe */

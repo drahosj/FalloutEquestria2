@@ -28,6 +28,7 @@
 
 namespace foe {
 class Game;
+class Room;
 
 class Character {
 public:
@@ -45,6 +46,8 @@ public:
 
 	int walkDistance;
 	unsigned long int uid;
+
+	void enterRoom(Room *, int, int, unsigned int);
 
 	Special baseSpecial;
 	Special derivedSpecial;

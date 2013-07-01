@@ -136,9 +136,9 @@ void Game::doMainLoop() {
 					} else if (((*iter)->travelTarget->room == currentRoom) && (*iter == movePath->back())) { //Same room door, lolwut
 						(*characters.begin())->entity->x = (*iter)->travelTarget->x;
 						(*characters.begin())->entity->y = (*iter)->travelTarget->y;
-					/*} else if (((*iter)->travelTarget->room != currentRoom) && (*iter == movePath->back())) { //Change room
+					} else if (((*iter)->travelTarget->room != currentRoom) && (*iter == movePath->back())) { //Change room
 						(*characters.begin())->enterRoom((*iter)->travelTarget->room, (*iter)->travelTarget->x, (*iter)->travelTarget->y, Entity::PLAYER);
-						currentRoom = (*iter)->travelTarget->room;z*/
+						currentRoom = (*iter)->travelTarget->room;
 					} else { //Not a door/transition
 						(*characters.begin())->entity->x = (*iter)->x; //MOVE CHARACTER!
 						(*characters.begin())->entity->y = (*iter)->y;
@@ -223,9 +223,8 @@ void Game::redrawUI() {
 
 			rect.x = (*iter)->x * Tile::TILE_SIZE + ROOM_X;
 			rect.y = (*iter)->y * Tile::TILE_SIZE + ROOM_Y;
-			if (((*(iter))->travelTarget != 0) && (*iter = movePath->back())) { //if is a transition
+			if (((*(iter))->travelTarget != 0) && (*iter == movePath->back())) //if is a transition and the last part
 				SDL_BlitSurface(resources.getUiElement(0x3), NULL, screen, &rect);
-			}
 			else if (dist <= (*characters.begin())->walkDistance)
 				SDL_BlitSurface(resources.getUiElement(0x0), NULL, screen, &rect);
 			else
@@ -234,6 +233,8 @@ void Game::redrawUI() {
 			dist++;
 		} while (iter != movePath->end());
 	}
+
+
 	rect.x = RIGHT_PANE_X; //Draw RIGHT PANE Background
 	rect.y = RIGHT_PANE_Y;
 	rect.h = 0;

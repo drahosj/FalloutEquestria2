@@ -29,6 +29,7 @@
 #include "Game.h"
 #include "Entity.h"
 #include "Character.h"
+#include "Exceptions.h"
 
 namespace foe {
 
@@ -74,6 +75,8 @@ SDL_Surface  * Resources::loadImage(char *name) {
 	SDL_Surface *tempImage = 0;
 	SDL_Surface *optimizedImage = 0;
 	tempImage = IMG_Load(name);
+
+	if (tempImage == 0) throw loadImageError(name);
 	optimizedImage = SDL_DisplayFormatAlpha(tempImage);
 	SDL_FreeSurface(tempImage);
 	return optimizedImage;

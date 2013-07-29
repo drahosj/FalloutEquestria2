@@ -149,6 +149,13 @@ Character * Resources::characterFromRaw(std::string charName) {
 	std::getline(rawfile, s);
 	lck = parseRawString(s);
 
+	if (str == 0) throw rawFormatError(fileName);
+	if (per == 0) throw rawFormatError(fileName);
+	if (end == 0) throw rawFormatError(fileName);
+	if (cha == 0) throw rawFormatError(fileName);
+	if (intel == 0) throw rawFormatError(fileName);
+	if (agi == 0) throw rawFormatError(fileName);
+	if (lck == 0) throw rawFormatError(fileName);
 
 	rawfile.close();
 

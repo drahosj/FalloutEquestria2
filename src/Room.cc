@@ -29,6 +29,8 @@
 #include "Entity.h"
 #include <iostream>
 #include <algorithm>
+#include "Exceptions.h"
+#include <stdio.h>
 
 namespace foe {
 
@@ -163,6 +165,11 @@ void Room::createTiles() {
 				tiles[i][j] = new Tile(i, j, Tile::Types::CONCRETE_0, this);
 			else if ((*map)[j+2].c_str()[i] == 'W')
 				tiles[i][j] = new Tile(i, j, Tile::Types::WALL_0, this);
+			else {
+				char buf[12];
+				sprintf(buf, "0x%x", tid);
+				throw mapFormatError(buf);
+			}
 		}
 	}
 }

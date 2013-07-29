@@ -59,9 +59,9 @@ public:
 	static const int SCREEN_BPP = 32;
 
 	static const int RIGHT_PANE_X = 425;
-	static const int RIGHT_PANE_Y = 0;
+	static const int RIGHT_PANE_Y = 25;
 	static const int SPECIAL_PANE_X = 20;
-	static const int SPECIAL_PANE_Y = 25;
+	static const int SPECIAL_PANE_Y = 10;
 	static const int ROOM_X = 25;
 	static const int ROOM_Y = 25;
 

@@ -28,6 +28,8 @@ namespace foe {
 loadImageError::loadImageError(std::string message) : std::runtime_error(message) {}
 loadMapError::loadMapError(std::string message) : std::runtime_error(message) {}
 loadRawError::loadRawError(std::string message) : std::runtime_error(message) {}
+rawFormatError::rawFormatError(std::string message) : std::runtime_error(message) {}
+mapFormatError::mapFormatError(std::string message) : std::runtime_error(message) {}
 
 }
 

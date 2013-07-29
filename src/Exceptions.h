@@ -44,6 +44,16 @@ public:
 	loadRawError(std::string message);
 };
 
+class mapFormatError : public std::runtime_error {
+public:
+	mapFormatError(std::string message);
+};
+
+class rawFormatError : public std::runtime_error {
+public:
+	rawFormatError(std::string message);
+};
+
 
 }
 

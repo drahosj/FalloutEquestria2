@@ -42,13 +42,15 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
 
-	try {
+	/*try {
 	resources.loadAll();
 	} catch (loadImageError& e) {
 		std::cout << "Shit broke. Expect segfaults." << std::endl;
 		std:: cout<< "Exception: " << e.what() << std::endl;;
 		throw e;
-	}
+	}*/ //Boilerplate catching of errors
+
+	resources.loadAll();
 
 	playerUid = 0;
 

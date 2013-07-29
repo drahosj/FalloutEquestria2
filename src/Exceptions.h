@@ -33,6 +33,18 @@ class loadImageError : public std::runtime_error {
 public:
 	loadImageError(std::string message);
 };
+
+class loadMapError : public std::runtime_error {
+public:
+	loadMapError(std::string message);
+};
+
+class loadRawError : public std::runtime_error {
+public:
+	loadRawError(std::string message);
+};
+
+
 }
 
 #endif /* EXCEPTIONS_H_ */

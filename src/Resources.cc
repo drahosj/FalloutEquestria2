@@ -77,6 +77,7 @@ SDL_Surface  * Resources::loadImage(char *name) {
 	tempImage = IMG_Load(name);
 
 	if (tempImage == 0) throw loadImageError(name);
+
 	optimizedImage = SDL_DisplayFormatAlpha(tempImage);
 	SDL_FreeSurface(tempImage);
 	return optimizedImage;
@@ -95,6 +96,9 @@ std::vector<std::string> * Resources::loadMap(char *name) {
 	std::string s;
 
 	mapfile.open(name);
+
+	if (!(mapfile.good())) throw loadMapError(name);
+
 	std::vector<std::string> *input = new std::vector<std::string>;
 	while(std::getline(mapfile, s)) {
 		input->push_back(s);
@@ -119,6 +123,8 @@ Character * Resources::characterFromRaw(std::string charName) {
 	fileName+= ".raw";
 
 	rawfile.open(fileName.c_str());
+
+	if (!(rawfile.good())) throw loadRawError(fileName);
 
 	std::getline(rawfile, s); //throw away first line
 

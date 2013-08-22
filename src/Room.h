@@ -58,6 +58,7 @@ public:
 	int width, height, pixelHeight, pixelWidth;
 	Game *game;
 	std::vector<std::string> *map;
+	std::vector<Tile *> transitions;
 private:
 	void createTiles();
 	Tile * pathSelectNext();

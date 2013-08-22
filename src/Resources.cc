@@ -30,6 +30,7 @@
 #include "Entity.h"
 #include "Character.h"
 #include "Exceptions.h"
+#include "Room.h"
 
 namespace foe {
 
@@ -160,6 +161,49 @@ Character * Resources::characterFromRaw(std::string charName) {
 	rawfile.close();
 
 	return new Character(str, per, end, cha, intel, agi, lck, game);
+}
+Room * Resources::roomFromRaw(std::string roomName) {
+	std::ifstream rawfile;
+	std::string s;
+	std::string value;
+	std::string::iterator iter;
+	std::string fileName = "res/raws/room/";
+	fileName+= roomName;
+	fileName+= ".raw";
+
+	rawfile.open(fileName.c_str());
+
+	if (!(rawfile.good())) throw loadRawError(fileName);
+
+	std::getline(rawfile, s);
+	std::cout << s << std::endl;
+	Room * newRoom = new Room(game, parseRawString(s));
+
+	int x, y;
+	while (std::getline(rawfile, s)) {
+		std::string value = "";
+		std::string::iterator iter;
+		iter = s.begin();
+
+		while ((iter != s.end()) && (*iter != '=')) {
+			iter++;
+		}
+		while ((iter != s.end()) && (*iter != ',')) {
+			iter++;
+			value += *iter;
+		}
+		x = atoi(value.c_str());
+		value = "";
+		while (iter != s.end()) {
+			iter++;
+			value += *iter;
+		}
+		y = atoi(value.c_str());
+		newRoom->transitions.push_back(newRoom->tiles[x][y]);
+	}
+
+	rawfile.close();
+	return newRoom;
 }
 
 int Resources::parseRawString(std::string str) {

@@ -58,7 +58,8 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 	Character *tc = resources.characterFromRaw("player"); //create a character, characters exist within games (the character gets its game from the resources)
 	characters.push_back(tc); // add the character to the game's list of characters
 
-	Room *testroom = new Room(this, 1); //create a room. Rooms exist within games
+	//Room *testroom = new Room(this, 1); //create a room. Rooms exist within games
+	Room *testroom = resources.roomFromRaw("01"); // generate room from raw
 
 	tc->enterRoom(testroom, 2, 2, Entity::PLAYER); //Create an entity. Entities only exist within rooms, but belong to entities or other whatsits
 
@@ -66,7 +67,11 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 
 	Room *otherroom = new Room(this, 2);
 
-	testroom->tiles[1][1]->travelTarget = otherroom->tiles[8][1];
+	//hardcoded travel target
+	//testroom->tiles[1][1]->travelTarget = otherroom->tiles[8][1];
+
+	testroom->transitions[0]->travelTarget = otherroom->tiles[8][1]; //Raw-generated transition start
+
 
 	//BEGIN SPECIAL PANE GENERATION ---- THIS SHOULD BE SEPARATE //todo separate them
 	uiSpecialPane = NULL;

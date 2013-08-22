@@ -34,6 +34,7 @@ namespace foe {
 
 class Character;
 class Game;
+class Room;
 class Resources {
 public:
 	Resources(Game *);
@@ -44,6 +45,7 @@ public:
 	SDL_Surface * getUiElement(unsigned int);
 	std::vector<std::string> * getMap(unsigned int);
 	Character * characterFromRaw(std::string);
+	Room * roomFromRaw(std::string);
 	void loadAll();
 	Game *game;
 private:

@@ -65,12 +65,19 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 
 	currentRoom = testroom;
 
-	Room *otherroom = new Room(this, 2);
+//	Room *otherroom = new Room(this, 2);
+	Room *otherroom = resources.roomFromRaw("02");
 
 	//hardcoded travel target
 	//testroom->tiles[1][1]->travelTarget = otherroom->tiles[8][1];
 
-	testroom->transitions[0]->travelTarget = otherroom->tiles[8][1]; //Raw-generated transition start
+	testroom->transitions[0]->travelTarget = otherroom->transitions[0]; //Raw-generated transition start
+	testroom->transitions[1]->travelTarget = otherroom->transitions[1]; //Raw-generated transition start
+	testroom->transitions[2]->travelTarget = otherroom->transitions[2]; //Raw-generated transition start
+
+	otherroom->transitions[0]->travelTarget = testroom->transitions[0]; //Raw-generated transition start
+	otherroom->transitions[1]->travelTarget = testroom->transitions[1]; //Raw-generated transition start
+	otherroom->transitions[2]->travelTarget = testroom->transitions[2]; //Raw-generated transition start
 
 
 	//BEGIN SPECIAL PANE GENERATION ---- THIS SHOULD BE SEPARATE //todo separate them

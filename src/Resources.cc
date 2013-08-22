@@ -176,7 +176,6 @@ Room * Resources::roomFromRaw(std::string roomName) {
 	if (!(rawfile.good())) throw loadRawError(fileName);
 
 	std::getline(rawfile, s);
-	std::cout << s << std::endl;
 	Room * newRoom = new Room(game, parseRawString(s));
 
 	int x, y;

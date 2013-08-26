@@ -28,6 +28,7 @@
 #include "Resources.h"
 #include <list>
 #include <SDL/SDL_ttf.h>
+#include "Logger.h"
 
 
 namespace foe {
@@ -48,6 +49,7 @@ public:
 	unsigned long playerUid;
 
 	Resources resources;
+	Logger logger;
 	Room * currentRoom;
 	int cursorMode;
 

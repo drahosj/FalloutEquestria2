@@ -15,15 +15,23 @@ namespace foe {
 Logger::Logger() {
 	// TODO Auto-generated constructor stub
 	char buffer[32]; //more than enough for a Unix timestamp
-	sprintf(buffer, "%d", std::time(0));
+	openTime = std::time(0);
+	sprintf(buffer, "%d", openTime);
 	std::string filename = "log/";
 	filename.append(buffer);
 	filename.append(".log");
 	logfile.open(filename.c_str());
 }
 
+void Logger::log(std::string s) {
+	std::string logstring = "[T+";
+	char buffer[16];
+	sprintf(buffer, "%0d", std::time(0) - openTime)
+}
+
 Logger::~Logger() {
 	// TODO Auto-generated destructor stub
+	logfile.close();
 }
 
 } /* namespace foe */

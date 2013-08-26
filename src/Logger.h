@@ -9,6 +9,7 @@
 #define LOGGER_H_
 
 #include <fstream>
+#include <string>
 
 namespace foe {
 
@@ -16,8 +17,10 @@ class Logger {
 public:
 	Logger();
 	virtual ~Logger();
+	void log(std::string);
 private:
 	std::ofstream logfile;
+	long openTime;
 };
 
 } /* namespace foe */

@@ -43,6 +43,7 @@ void Resources::loadAll() {
 	loadMaps();
 	loadEntities();
 	loadUiElements();
+	game->logger.log("All resources loaded");
 }
 
 Resources::~Resources() {
@@ -59,6 +60,8 @@ void Resources::loadTiles() {
 	tile_sprites[0x9] = loadImage("res/textures/tiles/0009_concrete_dark_0.png");
 	tile_sprites[0xa] = loadImage("res/textures/tiles/000a_concrete_dark_1.png");
 	tile_sprites[0x10] = loadImage("res/textures/tiles/0010_wall_0.png");
+
+	game->logger.log("Tile sprites loaded");
 }
 
 
@@ -67,6 +70,8 @@ void Resources::loadUiElements() {
 	ui_elements[0x1] = loadImage("res/textures/ui/0001_walk_red.png");
 	ui_elements[0x2] = loadImage("res/textures/ui/0002_pane_right.png");
 	ui_elements[0x3] = loadImage("res/textures/ui/0003_walk_blue.png");
+
+	game->logger.log("UI elements loaded");
 }
 
 void Resources::loadEntities() {
@@ -82,6 +87,12 @@ SDL_Surface  * Resources::loadImage(char *name) {
 
 	optimizedImage = SDL_DisplayFormatAlpha(tempImage);
 	SDL_FreeSurface(tempImage);
+
+	std::string logstring = "Image ";
+	logstring += name;
+	logstring += " loaded";
+	game->logger.log(logstring);
+
 	return optimizedImage;
 }
 
@@ -161,6 +172,8 @@ Character * Resources::characterFromRaw(std::string charName) {
 
 	rawfile.close();
 
+	game->logger.log("Character loaded from raw");
+
 	return new Character(str, per, end, cha, intel, agi, lck, game);
 }
 Room * Resources::roomFromRaw(std::string roomName) {
@@ -207,7 +220,7 @@ Room * Resources::roomFromRaw(std::string roomName) {
 	char buffer[16];
 	sprintf(buffer, "%08d", newRoom->uid);
 	logstring += buffer;
-	logstring += "Loaded";
+	logstring += " Loaded";
 	game->logger.log(logstring);
 	return newRoom;
 }

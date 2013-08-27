@@ -157,6 +157,11 @@ void Game::doMainLoop() {
 					} else if (((*iter)->travelTarget->room != currentRoom) && (*iter == movePath->back())) { //Change room
 						(*characters.begin())->enterRoom((*iter)->travelTarget->room, (*iter)->travelTarget->x, (*iter)->travelTarget->y, Entity::PLAYER);
 						currentRoom = (*iter)->travelTarget->room;
+						char buffer[8];
+						sprintf(buffer, "%08d", currentRoom->uid);
+						std::string logstring = "Transition to room ";
+						logstring += buffer;
+						logger.log(logstring);
 					} else { //Not a door/transition
 						(*characters.begin())->entity->x = (*iter)->x; //MOVE CHARACTER!
 						(*characters.begin())->entity->y = (*iter)->y;

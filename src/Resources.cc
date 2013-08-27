@@ -31,6 +31,7 @@
 #include "Character.h"
 #include "Exceptions.h"
 #include "Room.h"
+#include "Logger.h"
 
 namespace foe {
 
@@ -202,6 +203,10 @@ Room * Resources::roomFromRaw(std::string roomName) {
 	}
 
 	rawfile.close();
+	std::string logstring = "Room ";
+	logstring += newRoom->uid;
+	logstring += "Loaded";
+	game->logger.log(logstring);
 	return newRoom;
 }
 
@@ -224,5 +229,6 @@ void Resources::loadMaps() {
 	maps[0x1] = loadMap("res/maps/01.mpf");
 	maps[0x2] = loadMap("res/maps/02.mpf");
 
+	game->logger.log("Maps loaded.");
 }
 } /* namespace foe */

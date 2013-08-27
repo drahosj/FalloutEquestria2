@@ -204,7 +204,9 @@ Room * Resources::roomFromRaw(std::string roomName) {
 
 	rawfile.close();
 	std::string logstring = "Room ";
-	logstring += newRoom->uid;
+	char buffer[16];
+	sprintf(buffer, "%08d", newRoom->uid);
+	logstring += buffer;
 	logstring += "Loaded";
 	game->logger.log(logstring);
 	return newRoom;

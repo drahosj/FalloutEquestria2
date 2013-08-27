@@ -26,7 +26,7 @@ Logger::Logger() {
 void Logger::log(std::string s) {
 	std::string logstring = "[T+";
 	char buffer[16];
-	sprintf(buffer, "%000000d", std::time(0) - openTime);
+	sprintf(buffer, "%08d", std::time(0) - openTime);
 	logstring += buffer;
 	logstring += "] ";
 	logstring += s;

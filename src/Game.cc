@@ -123,7 +123,6 @@ Game::Game() : nextUid(0), cursorMode(0), movePath(0), resources(this){
 }
 
 Game::~Game() {
-	delete &logger;
 }
 
 unsigned long Game::getNextUid() {

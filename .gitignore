@@ -1,4 +1,6 @@
 src/*.o
+.settings
+log/*
 src/fallout_equestria
 src/.deps
 config.log
